@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import innovappte.mobile.gamesskills.R
 
-class FifaHomeActivity : AppCompatActivity() {
+class FiFaHomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

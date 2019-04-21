@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.fifa.home.FifaHomeActivity"/>
+        <activity android:name=".presentation.fifa.home.FiFaHomeActivity"/>
         <activity android:name=".presentation.splash.SplashActivity"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
