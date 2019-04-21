@@ -3,14 +3,17 @@
     package="innovappte.mobile.gamesskills">
 
     <application
+        android:name=".presentation.GamesSkillsApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.fifa.home.FiFaHomeActivity"/>
-        <activity android:name=".presentation.splash.SplashActivity"
+        <activity android:name=".presentation.fifa.home.FifaSkillListActivity"></activity>
+        <activity android:name=".presentation.fifa.home.FiFaHomeActivity" />
+        <activity
+            android:name=".presentation.splash.SplashActivity"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
