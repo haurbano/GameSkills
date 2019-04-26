@@ -12,7 +12,7 @@ class GameSkillRepositoryImpl(
         const val GAME_SKILLS_FILE_NAME = "game_skill_example.json"
     }
 
-    override fun getGameSkills(): List<GameSkill> {
+    override fun getFifaGameSkills(): List<GameSkill> {
         val jsonString = dataFilesManager.getAssetAsString(GAME_SKILLS_FILE_NAME)
         return Gson().fromJson(jsonString, GameSkillsResponse::class.java).skills
     }

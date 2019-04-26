@@ -1,0 +1,14 @@
+{
+  "skills":[
+	  {
+		"name": {
+			"default": "Heel chop left(while running)",
+			"es": "Corte de talon a la izquierda (trotando)"
+		},
+		"ps4ControlAlternativeVideo": "https://firebasestorage.googleapis.com/v0/b/gameskillsapp-38862.appspot.com/o/skills%2FdWOK3om57mIgwsP3JYl6%2Fps4_alternative_24.mp4?alt=media&token=f0c869a9-93be-4ec3-b3cc-3392c80c5ec6",
+		"ps4ControlClassicVideo": "https://firebasestorage.googleapis.com/v0/b/gameskillsapp-38862.appspot.com/o/skills%2FdWOK3om57mIgwsP3JYl6%2Fps4_classic_24.mp4?alt=media&token=bc8b370b-8c7b-44a4-9732-85b1bec20128",
+		"skillMoves": 4,
+		"skillVideo": "https://firebasestorage.googleapis.com/v0/b/gameskillsapp-38862.appspot.com/o/skills%2FdWOK3om57mIgwsP3JYl6%2Fskill_video.mp4?alt=media&token=3bb5144a-48f3-4db5-8a0a-995c1b115c2a"
+	  }
+	]
+}

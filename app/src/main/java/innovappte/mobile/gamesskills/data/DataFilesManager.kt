@@ -1,6 +1,7 @@
 package com.hamilton.gamesskillst.data
 
 import android.content.Context
+import android.util.Log
 import java.io.IOException
 import java.nio.charset.Charset
 
@@ -12,6 +13,7 @@ class DataFilesManager(private val context: Context) {
             inputStream.close()
             return result
         } catch (e: IOException) {
+            Log.e("Error","Error getting file source")
             ""
         }
     }
