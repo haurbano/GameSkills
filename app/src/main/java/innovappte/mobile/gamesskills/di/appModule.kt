@@ -16,7 +16,7 @@ val appModule: Module = module {
     // region Fifa
     viewModel { FifaSkillsListVM(get()) }
     factory<FifaGameSkillsUseCase> { FifaGameSkillsUseCaseImpl(get()) }
-    factory<GameSkillsRepository> { GameSkillRepositoryImpl(get()) }
+    factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), androidContext()) }
     factory { DataFilesManager(androidContext()) }
     //endregion
 }

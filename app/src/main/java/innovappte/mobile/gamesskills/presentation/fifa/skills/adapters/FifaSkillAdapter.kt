@@ -3,6 +3,7 @@ package innovappte.mobile.gamesskills.presentation.fifa.skills.adapters
 import android.content.Context
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import android.widget.TextView
 import android.widget.VideoView
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
-
+import innovappte.mobile.gamesskills.data.VideoPathUtils
 
 
 class FifaSkillAdapter(var items: List<GameSkill>, val context: Context): RecyclerView.Adapter<FifaSkillAdapter.ViewHolder>() {
@@ -27,7 +28,7 @@ class FifaSkillAdapter(var items: List<GameSkill>, val context: Context): Recycl
         val nameTextView = holder.itemView.findViewById<TextView>(R.id.textViewNameGameSkill)
         val videoView = holder.itemView.findViewById<VideoView>(R.id.videoViewGameSkill)
         nameTextView.text = items[position].name.default
-//        setupVideo(videoView, position)
+        setupVideo(videoView, position)
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
@@ -35,11 +36,12 @@ class FifaSkillAdapter(var items: List<GameSkill>, val context: Context): Recycl
     private fun setupVideo(videoView: VideoView, position: Int) {
         val videoMediaController = MediaController(context)
         val gameSkill = items[position]
-        val videoUri = Uri.parse(gameSkill.skillVideo)
+        val videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, gameSkill))
         videoView.setVideoURI(videoUri)
         videoMediaController.setMediaPlayer(videoView)
         videoView.setMediaController(videoMediaController)
         videoView.requestFocus()
+        videoView.setOnPreparedListener { it.isLooping = true }
         videoView.start()
     }
 }
