@@ -7,17 +7,20 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.presentation.common.ViewStatus
+import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity
 import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.FifaSkillAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FifaSkillListActivity : AppCompatActivity() {
 
     private val viewModel: FifaSkillsListVM by viewModel()
-    private val gameSkillsAdapter: FifaSkillAdapter by lazy { FifaSkillAdapter(emptyList(), this) }
+    private val onItemListListener = { skill: GameSkill -> goToDetails(skill) }
+    private val gameSkillsAdapter: FifaSkillAdapter by lazy { FifaSkillAdapter(emptyList(), this, onItemListListener) }
 
-    lateinit var recyclerViewSkills: RecyclerView
+    private lateinit var recyclerViewSkills: RecyclerView
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -68,5 +71,10 @@ class FifaSkillListActivity : AppCompatActivity() {
 
     private fun showLoader() {
 
+    }
+
+    private fun goToDetails(skill: GameSkill) {
+        val intent = SkillDetailsActivity.getIntent(this, skill)
+        startActivity(intent)
     }
 }

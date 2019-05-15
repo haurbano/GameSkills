@@ -1,5 +1,7 @@
 package com.hamilton.gamesskillst.domain.models
 
+import java.io.Serializable
+
 data class GameSkill(
     val index: Int,
     val name: SkillName,
@@ -10,4 +12,4 @@ data class GameSkill(
     val xboxControlAlternativeVideo: String,
     val xboxControlClassicVideo: String,
     val actions: List<Action>
-)
+) : Serializable

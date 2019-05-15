@@ -1,3 +1,5 @@
 package com.hamilton.gamesskillst.domain.models
 
-data class SkillName(val default: String, val es: String)
+import java.io.Serializable
+
+data class SkillName(val default: String, val es: String) : Serializable
