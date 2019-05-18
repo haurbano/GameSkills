@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="bgFiFaSkills">#0d2452</color>
     <color name="white">#ffffff</color>
+    <color name="subOptionFiFaHome">#43ffdb</color>
+    <color name="unselected_option">#33ffffff</color>
 </resources>

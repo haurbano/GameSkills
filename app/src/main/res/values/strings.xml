@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">GamesSkills</string>
+    <string name="btn_title_plays">Jugadas</string>
+    <string name="btn_title_celebrations">Celebraciones</string>
+    <string name="btn_title_players">Jugadores</string>
+    <string name="btn_title_advises">Concejos</string>
+    <string name="title_control">Control</string>
+    <string name="title_mode">Modo</string>
+    <string name="title_clasic_mode">Clasico</string>
+    <string name="title_alternative_mode">Alternativo</string>
 </resources>

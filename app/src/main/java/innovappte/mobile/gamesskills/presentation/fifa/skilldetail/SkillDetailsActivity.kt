@@ -6,6 +6,8 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.MediaController
+import android.widget.VideoView
+import com.hamilton.gamesskillst.data.GameSkillRepositoryImpl
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.data.VideoPathUtils
@@ -31,14 +33,19 @@ class SkillDetailsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        startVideo(skill)
+        startVideos(skill)
         setViewValues()
     }
 
-    private fun startVideo(skill: GameSkill) {
-        val videoView = videoViewSkillDetails
+    private fun startVideos(skill: GameSkill) {
+        startVideo(skill, videoViewSkillDetails, GameSkillRepositoryImpl.VideoType.Skill)
+        startVideo(skill, videoViewControl, GameSkillRepositoryImpl.VideoType.Ps4Classic)
+    }
+
+    private fun startVideo(skill: GameSkill, videoView: VideoView, videoType: GameSkillRepositoryImpl.VideoType) {
+
         val videoMediaController = MediaController(this)
-        val videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(this, skill))
+        val videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(this, skill, videoType))
         videoView.setVideoURI(videoUri)
         videoMediaController.setMediaPlayer(videoView)
         videoView.setMediaController(videoMediaController)

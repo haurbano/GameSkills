@@ -27,26 +27,40 @@ class GameSkillRepositoryImpl(
 
     override fun downloadSkillsVideos(skills: List<GameSkill>){
         skills.forEach { skill ->
-            if (!alreadyDownloaded(skill)) downloadVideo(skill)
+            if (!alreadyDownloaded(skill, VideoType.Skill)) downloadVideo(skill, VideoType.Skill)
+            if (!alreadyDownloaded(skill, VideoType.Ps4Classic)) downloadVideo(skill, VideoType.Ps4Classic)
+            if (!alreadyDownloaded(skill, VideoType.Ps4Alternative)) downloadVideo(skill, VideoType.Ps4Alternative)
         }
     }
 
-    private fun downloadVideo(skill: GameSkill) {
+    private fun downloadVideo(skill: GameSkill, videoType: VideoType) {
         Log.d("GameSkills Debug", "Downloading new video - ${skill.name.default}")
         val downloadManager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager?
-        downloadManager?.enqueue(buildRequest(skill))
+        downloadManager?.enqueue(buildRequest(skill, videoType))
     }
 
-    private fun buildRequest(skill: GameSkill): DownloadManager.Request {
-        val uri = Uri.parse(skill.skillVideo)
-        val destinationUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, skill))
+    private fun buildRequest(skill: GameSkill, videoType: VideoType): DownloadManager.Request {
+        val uri = Uri.parse(getVideoUrl(skill, videoType))
+        val destinationUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, skill, videoType))
         return DownloadManager.Request(uri)
                 .setDestinationUri(destinationUri)
     }
 
-    private fun alreadyDownloaded(skill: GameSkill): Boolean {
-        val file = VideoPathUtils.getVideoFile(context, skill)
+    private fun alreadyDownloaded(skill: GameSkill, videoType: VideoType): Boolean {
+        val file = VideoPathUtils.getVideoFile(context, skill, videoType)
         return file?.exists() ?: false
+    }
+
+    private fun getVideoUrl(skill: GameSkill, videoType: VideoType): String {
+        return when (videoType) {
+            VideoType.Skill -> skill.skillVideo
+            VideoType.Ps4Classic -> skill.ps4ControlClassicVideo
+            VideoType.Ps4Alternative -> skill.ps4ControlAlternativeVideo
+        }
+    }
+
+    enum class VideoType {
+        Skill, Ps4Classic, Ps4Alternative
     }
 
 }

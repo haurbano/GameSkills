@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.VideoView
+import com.hamilton.gamesskillst.data.GameSkillRepositoryImpl
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.data.VideoPathUtils
@@ -24,17 +25,17 @@ class FifaSkillAdapter(var items: List<GameSkill>, val context: Context, val cli
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val nameTextView = holder.itemView.findViewById<TextView>(R.id.textViewNameGameSkill)
-        val videoView = holder.itemView.findViewById<VideoView>(R.id.videoViewGameSkill)
+        val videoViewSkill = holder.itemView.findViewById<VideoView>(R.id.videoViewGameSkill)
         nameTextView.text = items[position].name.default
-        setupVideo(videoView, position)
+        setupVideo(videoViewSkill, position, GameSkillRepositoryImpl.VideoType.Skill)
         holder.itemView.setOnClickListener { clickListener(items[position]) }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
-    private fun setupVideo(videoView: VideoView, position: Int) {
+    private fun setupVideo(videoView: VideoView, position: Int, videoType: GameSkillRepositoryImpl.VideoType) {
         val gameSkill = items[position]
-        val videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, gameSkill))
+        val videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, gameSkill, videoType))
         videoView.setVideoURI(videoUri)
         videoView.requestFocus()
         videoView.setOnPreparedListener { it.isLooping = true }
