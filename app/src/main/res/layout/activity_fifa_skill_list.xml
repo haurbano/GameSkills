@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.fifa.skills.FifaSkillListActivity"
-    android:background="@drawable/bg_fifa_skills">
+    android:background="@drawable/bg_fifa_skills"
+    android:paddingTop="36dp">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewSkills"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -21,12 +22,22 @@
         android:id="@+id/textViewSkillsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Jugadas"
         android:textColor="@color/white"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBackSkillLsit" />
+
+    <ImageView
+        android:id="@+id/imgBackSkillLsit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back_arrow" />
 </android.support.constraint.ConstraintLayout>

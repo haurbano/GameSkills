@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.MediaController
 import android.widget.VideoView
 import com.hamilton.gamesskillst.data.GameSkillRepositoryImpl
@@ -28,7 +29,13 @@ class SkillDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill_details)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         skill = intent.getSerializableExtra(GAME_SKILL_KEY) as GameSkill
+        setListeners()
+    }
+
+    private fun setListeners() {
+        imageViewBack.setOnClickListener { finish() }
     }
 
     override fun onResume() {

@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.WindowManager
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.presentation.common.ViewStatus
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity
 import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.FifaSkillAdapter
+import kotlinx.android.synthetic.main.activity_fifa_skill_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FifaSkillListActivity : AppCompatActivity() {
@@ -30,10 +32,16 @@ class FifaSkillListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fifa_skill_list)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         recyclerViewSkills = findViewById(R.id.recyclerViewSkills)
+        setListeners()
         setUpRecyclerView()
         setUpGameSkills()
         listenLoaderStatus()
+    }
+
+    private fun setListeners() {
+        imgBackSkillLsit.setOnClickListener { finish() }
     }
 
     override fun onResume() {
