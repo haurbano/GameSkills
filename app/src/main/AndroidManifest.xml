@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.fifa.skilldetail.SkillDetailsActivity"></activity>
         <activity android:name=".presentation.fifa.skills.FifaSkillListActivity" />
-        <activity android:name=".presentation.fifa.home.FiFaHomeActivity" />
+        <activity android:name=".presentation.fifa.home.FiFaHomeActivity"
+            android:theme="@style/FiFaHomeActivityTheme"/>
         <activity
             android:name=".presentation.splash.SplashActivity"
             android:theme="@style/AppTheme.Splash">

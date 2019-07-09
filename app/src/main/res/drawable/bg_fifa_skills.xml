@@ -5,12 +5,12 @@
     <item android:drawable="@color/bgFiFaSkills" />
     <item>
         <bitmap android:src="@drawable/bg_splash_top"
-            android:gravity="top"
+            android:gravity="top|left"
             />
     </item>
     <item>
         <bitmap android:src="@drawable/bg_splash_bottom"
-            android:gravity="bottom"
+            android:gravity="bottom|right"
             />
     </item>
 

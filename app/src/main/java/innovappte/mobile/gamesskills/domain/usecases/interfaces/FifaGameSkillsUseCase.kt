@@ -1,4 +1,4 @@
-package innovappte.mobile.gamesskills.domain.usecases.Interfaces
+package innovappte.mobile.gamesskills.domain.usecases.interfaces
 
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import com.hamilton.gamesskillst.domain.models.GameSkillsResponse

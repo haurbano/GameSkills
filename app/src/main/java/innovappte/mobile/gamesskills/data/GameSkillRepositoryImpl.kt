@@ -5,7 +5,7 @@ import android.content.Context
 import com.google.gson.Gson
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import com.hamilton.gamesskillst.domain.models.GameSkillsResponse
-import com.hamilton.gamesskillst.domain.repositories.GameSkillsRepository
+import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import android.content.Context.DOWNLOAD_SERVICE
 import android.net.Uri
 import android.util.Log

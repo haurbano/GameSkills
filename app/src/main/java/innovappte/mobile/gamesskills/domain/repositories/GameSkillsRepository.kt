@@ -1,4 +1,4 @@
-package com.hamilton.gamesskillst.domain.repositories
+package innovappte.mobile.gamesskills.domain.repositories
 
 import com.hamilton.gamesskillst.domain.models.GameSkill
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_fifa_skills"
+    android:paddingTop="64dp"
     tools:context=".presentation.fifa.home.FiFaHomeActivity">
 
     <ImageView
@@ -51,14 +52,14 @@
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBgCelebrations"
-        app:srcCompat="@drawable/bg_btn_adviser_option" />
+        app:srcCompat="@drawable/bg_btn_adviser_option"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guidelineBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="569dp" />
+        app:layout_constraintGuide_end="171dp" />
 
     <TextView
         android:id="@+id/textViewPlays"
@@ -107,11 +108,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/title_control"
         android:textAllCaps="true"
         android:textColor="@color/subOptionFiFaHome"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/imgBtnPs4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineBottom" />
 
@@ -119,75 +122,76 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/title_mode"
         android:textAllCaps="true"
         android:textColor="@color/subOptionFiFaHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewControl"
-        app:layout_constraintTop_toTopOf="@+id/guidelineBottom" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textViewControl" />
 
     <ImageButton
         android:id="@+id/imgBtnPs4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imgbtnXbox"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewControl"
         app:srcCompat="@drawable/btn_ps4_on" />
 
     <ImageButton
         android:id="@+id/imgbtnXbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewModeClasic"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toEndOf="@+id/imgBtnPs4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewControl"
         app:srcCompat="@drawable/btn_xbox_off" />
 
     <TextView
         android:id="@+id/textViewModeClasic"
+        style="@style/TextViewFifaHomeModeSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/title_clasic_mode"
         app:layout_constraintBottom_toTopOf="@+id/textViewModeAlternative"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imgbtnXbox"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        style="@style/TextViewFifaHomeModeSelected"/>
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/textViewModeAlternative"
+        style="@style/TextViewFifaHomeModeUnselected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/title_alternative_mode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imgbtnXbox"
-        app:layout_constraintTop_toBottomOf="@+id/textViewModeClasic"
-        style="@style/TextViewFifaHomeModeUnselected"/>
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="259dp" />
+
+    <View
+        android:id="@+id/viewCeparator"
+        android:layout_width="1dp"
+        android:layout_height="80dp"
+        android:background="@color/subOptionFiFaHome"
+        app:layout_constraintBottom_toBottomOf="@+id/imgbtnXbox"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/imgbtnXbox" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,7 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
 import com.hamilton.gamesskillst.domain.models.GameSkill
-import innovappte.mobile.gamesskills.domain.usecases.Interfaces.FifaGameSkillsUseCase
+import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaGameSkillsUseCase
 import innovappte.mobile.gamesskills.presentation.common.ViewStatus
 import io.reactivex.disposables.CompositeDisposable
 
