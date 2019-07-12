@@ -12,18 +12,21 @@ import innovappte.mobile.gamesskills.presentation.fifa.home.FifaHomeVM
 import innovappte.mobile.gamesskills.presentation.fifa.skills.FifaSkillsListVM
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
-
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-val appModule: Module = module {
+
+val appModule: Module = module(override = true) {
     // region Fifa
-    viewModel { FifaSkillsListVM(get()) }
-    viewModel { FifaHomeVM(get()) }
     factory<FifaGameSkillsUseCase> { FifaGameSkillsUseCaseImpl(get()) }
     factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), androidContext()) }
     factory { DataFilesManager(androidContext()) }
     factory<FifaConfigUseCase> { FifaConfigUseCaseImpl(get()) }
     factory { FifaSharedPreferenceDataSource(androidContext()) }
     //endregion
+}
+
+val viewModelModule = module {
+    viewModel { FifaSkillsListVM(get()) }
+    viewModel { FifaHomeVM(get()) }
 }
