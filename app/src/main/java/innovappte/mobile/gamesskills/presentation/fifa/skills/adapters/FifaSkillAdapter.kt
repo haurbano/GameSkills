@@ -7,8 +7,7 @@ import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
-import android.widget.VideoView
-import com.hamilton.gamesskillst.data.GameSkillRepositoryImpl
+import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.data.VideoPathUtils

@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.view.WindowManager
 import innovappte.mobile.gamesskills.R
-import innovappte.mobile.gamesskills.domain.models.ConsoleType
+import innovappte.mobile.domain.models.ConsoleType
 import innovappte.mobile.gamesskills.domain.models.FifaControlMode
 import innovappte.mobile.gamesskills.presentation.fifa.skills.FifaSkillListActivity
 import innovappte.mobile.gamesskills.presentation.utils.FiFaDialog

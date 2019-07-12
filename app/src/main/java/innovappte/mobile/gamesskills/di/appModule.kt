@@ -1,12 +1,12 @@
 package innovappte.mobile.gamesskills.di
 
-import innovappte.mobile.gamesskills.data.DataFilesManager
-import com.hamilton.gamesskillst.data.GameSkillRepositoryImpl
+import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
+import innovappte.mobile.data.FifaSharedPreferenceDataSource
+import innovappte.mobile.domain.usecases.impl.FifaConfigUseCaseImpl
+import innovappte.mobile.data.DataFilesManager
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
-import innovappte.mobile.gamesskills.data.FifaSharedPreferenceHandler
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaConfigUseCase
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaGameSkillsUseCase
-import innovappte.mobile.gamesskills.domain.usecases.impl.FifaConfigUseCaseImpl
 import innovappte.mobile.gamesskills.domain.usecases.impl.FifaGameSkillsUseCaseImpl
 import innovappte.mobile.gamesskills.presentation.fifa.home.FifaHomeVM
 import innovappte.mobile.gamesskills.presentation.fifa.skills.FifaSkillsListVM
@@ -24,6 +24,6 @@ val appModule: Module = module {
     factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), androidContext()) }
     factory { DataFilesManager(androidContext()) }
     factory<FifaConfigUseCase> { FifaConfigUseCaseImpl(get()) }
-    factory { FifaSharedPreferenceHandler(androidContext()) }
+    factory { FifaSharedPreferenceDataSource(androidContext()) }
     //endregion
 }
