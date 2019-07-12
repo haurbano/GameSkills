@@ -9,12 +9,13 @@ import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import android.content.Context.DOWNLOAD_SERVICE
 import android.net.Uri
 import android.util.Log
+import innovappte.mobile.gamesskills.data.DataFilesManager
 import innovappte.mobile.gamesskills.data.VideoPathUtils
 
 
 class GameSkillRepositoryImpl(
-    private val dataFilesManager: DataFilesManager,
-    private val context: Context
+        private val dataFilesManager: DataFilesManager,
+        private val context: Context
 ) : GameSkillsRepository {
     companion object{
         const val GAME_SKILLS_FILE_NAME = "game_skill_example.json"

@@ -1,6 +1,6 @@
 package innovappte.mobile.gamesskills.di
 
-import com.hamilton.gamesskillst.data.DataFilesManager
+import innovappte.mobile.gamesskills.data.DataFilesManager
 import com.hamilton.gamesskillst.data.GameSkillRepositoryImpl
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import innovappte.mobile.gamesskills.data.FifaSharedPreferenceHandler

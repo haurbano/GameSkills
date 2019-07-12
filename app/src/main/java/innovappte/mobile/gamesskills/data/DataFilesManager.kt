@@ -1,4 +1,4 @@
-package com.hamilton.gamesskillst.data
+package innovappte.mobile.gamesskills.data
 
 import android.content.Context
 import android.util.Log
