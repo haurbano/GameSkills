@@ -13,6 +13,7 @@ import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.domain.models.ConsoleType
 import innovappte.mobile.gamesskills.domain.models.FifaControlMode
 import innovappte.mobile.gamesskills.presentation.fifa.skills.FifaSkillListActivity
+import innovappte.mobile.gamesskills.presentation.utils.FiFaDialog
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.activity_fifa_home.*
 
@@ -61,6 +62,10 @@ class FiFaHomeActivity : AppCompatActivity() {
     private fun setListeners() {
         textViewPlays.setOnClickListener { openSkillList() }
         imgBgPlays.setOnClickListener { openSkillList() }
+
+        textViewCelebrations.setOnClickListener { showComingFeatureDialog() }
+        imgBgCelebrations.setOnClickListener { showComingFeatureDialog() }
+
         imgBtnPs4.setOnClickListener { changeConsoleType(ConsoleType.PS4) }
         imgbtnXbox.setOnClickListener { changeConsoleType(ConsoleType.XBOX) }
         textViewModeClasic.setOnClickListener { changeControlMode(FifaControlMode.CLASSIC) }
@@ -69,6 +74,12 @@ class FiFaHomeActivity : AppCompatActivity() {
 
     private fun openSkillList() {
         startActivity(FifaSkillListActivity.getIntent(this))
+    }
+
+    private fun showComingFeatureDialog() {
+        FiFaDialog.Builder()
+                .Build()
+                .show(this)
     }
 
     private fun changeConsoleType(consoleType: ConsoleType) {

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="24dp">
 
-    <VideoView
+    <TextureView
         android:id="@+id/videoViewGameSkill"
         android:layout_width="100dp"
         android:layout_height="100dp"
