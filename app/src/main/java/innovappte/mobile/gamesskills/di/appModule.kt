@@ -1,7 +1,7 @@
 package innovappte.mobile.gamesskills.di
 
 import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
-import innovappte.mobile.data.FifaSharedPreferenceDataSource
+import innovappte.mobile.data.datasources.FifaSharedPreferenceDataSource
 import innovappte.mobile.domain.usecases.impl.FifaConfigUseCaseImpl
 import innovappte.mobile.data.DataFilesManager
 import innovappte.mobile.data.repositories.FiFaSharedPreferenceRepositoryImpl

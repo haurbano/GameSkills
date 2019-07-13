@@ -37,9 +37,13 @@ dependencies {
     implementation Dependencies.rxAndroid
     implementation Dependencies.rxJava
     implementation Dependencies.recyclerView
+    implementation Dependencies.firebaseCore
+    implementation Dependencies.firebaseDatabase
 
     testImplementation TestDependencies.junit
 
     androidTestImplementation AndroidTestDependencies.runner
     androidTestImplementation AndroidTestDependencies.espresso
 }
+
+apply plugin: 'com.google.gms.google-services'

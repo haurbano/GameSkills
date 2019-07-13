@@ -1,7 +1,7 @@
 package innovappte.mobile.gamesskills.presentation.fifa.home
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import innovappte.mobile.domain.models.ConsoleType
 import innovappte.mobile.gamesskills.domain.models.FifaControlMode
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaConfigUseCase

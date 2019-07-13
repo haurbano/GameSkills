@@ -7,8 +7,8 @@ import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaGameSkillsUs
 import io.reactivex.Single
 
 class FifaGameSkillsUseCaseImpl(private val gameSkillsRepository: GameSkillsRepository): FifaGameSkillsUseCase {
-    override fun getGameSkills(): Single<List<GameSkill>> {
-        return Single.just(gameSkillsRepository.getFifaGameSkills())
+    override fun getGameSkills(listener: (List<GameSkill>) -> Unit) {
+        gameSkillsRepository.getFifaGameSkills(listener)
     }
 
     override fun downloadSkillVideos(skills: List<GameSkill>): GameSkillsResponse.VideoSkillsDownloadStatus {

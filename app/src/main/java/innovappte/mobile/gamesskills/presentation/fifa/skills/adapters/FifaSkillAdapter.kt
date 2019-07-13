@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.SurfaceTexture
 import android.media.MediaPlayer
 import android.net.Uri
-import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R

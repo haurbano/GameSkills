@@ -33,6 +33,9 @@ dependencies {
     implementation Dependencies.kotlin
     implementation Dependencies.appCompat
     implementation Dependencies.gson
+    implementation Dependencies.firebaseCore
+    implementation Dependencies.firebaseDatabase
+    implementation Dependencies.koin
 
     testImplementation TestDependencies.junit
 

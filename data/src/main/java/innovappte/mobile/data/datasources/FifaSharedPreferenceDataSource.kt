@@ -1,4 +1,4 @@
-package innovappte.mobile.data
+package innovappte.mobile.data.datasources
 
 import android.content.Context
 import innovappte.mobile.domain.models.ConsoleType

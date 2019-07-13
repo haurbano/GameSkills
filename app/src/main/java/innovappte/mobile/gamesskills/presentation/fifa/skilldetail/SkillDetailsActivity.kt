@@ -3,11 +3,11 @@ package innovappte.mobile.gamesskills.presentation.fifa.skilldetail
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.MediaController
 import android.widget.VideoView
+import androidx.appcompat.app.AppCompatActivity
 import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R

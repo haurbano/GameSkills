@@ -2,29 +2,38 @@ package innovappte.mobile.data.repositories
 
 import android.app.DownloadManager
 import android.content.Context
-import com.google.gson.Gson
 
 import com.hamilton.gamesskillst.domain.models.GameSkillsResponse
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import android.content.Context.DOWNLOAD_SERVICE
 import android.net.Uri
 import android.util.Log
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.hamilton.gamesskillst.domain.models.GameSkill
-import innovappte.mobile.data.DataFilesManager
 import innovappte.mobile.gamesskills.data.VideoPathUtils
 
 
 class GameSkillRepositoryImpl(
-        private val dataFilesManager: DataFilesManager,
+        private val firebaseDatabase: FirebaseDatabase,
         private val context: Context
 ) : GameSkillsRepository {
-    companion object{
-        const val GAME_SKILLS_FILE_NAME = "game_skill_example.json"
-    }
 
-    override fun getFifaGameSkills(): List<GameSkill> {
-        val jsonString = dataFilesManager.getAssetAsString(GAME_SKILLS_FILE_NAME)
-        return Gson().fromJson(jsonString, GameSkillsResponse::class.java).skills
+    override fun getFifaGameSkills(listener: (List<GameSkill>) -> Unit) {
+        val skillsReference = firebaseDatabase.reference.child("skills")
+        skillsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val gameSkills = dataSnapshot.getValue(GameSkillsResponse::class.java)
+                listener(gameSkills?.skills ?: emptyList())
+            }
+
+        })
     }
 
     override fun downloadSkillsVideos(skills: List<GameSkill>){

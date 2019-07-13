@@ -1,8 +1,7 @@
 package innovappte.mobile.gamesskills.presentation.fifa.skills
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.hamilton.gamesskillst.domain.models.GameSkill
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaGameSkillsUseCase
 import innovappte.mobile.gamesskills.presentation.common.ViewStatus
@@ -20,14 +19,9 @@ class FifaSkillsListVM(private val gameSkillsUseCase: FifaGameSkillsUseCase) : V
 
     fun prepareGameSkillsData() {
         loaderViewStatus.value = ViewStatus.SHOWED
-        val disposable = gameSkillsUseCase.getGameSkills().subscribe(
-                { gameSkillsResponse ->
+        gameSkillsUseCase.getGameSkills{ gameSkillsResponse ->
                     gameSkills.value = gameSkillsResponse
                     gameSkillsUseCase.downloadSkillVideos(gameSkillsResponse)
-                },
-                { error -> Log.e("ERROR", "Error getting Fifa Game Skills") }
-        )
-
-        disposables.add(disposable)
+                }
     }
 }

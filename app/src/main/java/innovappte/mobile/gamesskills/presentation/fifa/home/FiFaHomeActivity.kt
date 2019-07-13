@@ -1,21 +1,21 @@
 package innovappte.mobile.gamesskills.presentation.fifa.home
 
 import android.annotation.TargetApi
-import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.domain.models.ConsoleType
 import innovappte.mobile.gamesskills.domain.models.FifaControlMode
 import innovappte.mobile.gamesskills.presentation.fifa.skills.FifaSkillListActivity
 import innovappte.mobile.gamesskills.presentation.utils.FiFaDialog
-import org.koin.android.viewmodel.ext.android.viewModel
 import kotlinx.android.synthetic.main.activity_fifa_home.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class FiFaHomeActivity : AppCompatActivity() {
 

@@ -1,6 +1,6 @@
 package innovappte.mobile.data.repositories
 
-import innovappte.mobile.data.FifaSharedPreferenceDataSource
+import innovappte.mobile.data.datasources.FifaSharedPreferenceDataSource
 import innovappte.mobile.domain.repositories.FiFaSharedPreferenceRepository
 import innovappte.mobile.domain.models.ConsoleType
 import innovappte.mobile.gamesskills.domain.models.FifaControlMode

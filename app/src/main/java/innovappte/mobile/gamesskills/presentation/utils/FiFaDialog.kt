@@ -1,13 +1,13 @@
 package innovappte.mobile.gamesskills.presentation.utils
 
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentActivity
 import innovappte.mobile.gamesskills.R
 
 class FiFaDialog: DialogFragment() {
