@@ -4,6 +4,8 @@ import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import innovappte.mobile.data.FifaSharedPreferenceDataSource
 import innovappte.mobile.domain.usecases.impl.FifaConfigUseCaseImpl
 import innovappte.mobile.data.DataFilesManager
+import innovappte.mobile.data.repositories.FiFaSharedPreferenceRepositoryImpl
+import innovappte.mobile.domain.repositories.FiFaSharedPreferenceRepository
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaConfigUseCase
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaGameSkillsUseCase
@@ -23,6 +25,7 @@ val appModule: Module = module(override = true) {
     factory { DataFilesManager(androidContext()) }
     factory<FifaConfigUseCase> { FifaConfigUseCaseImpl(get()) }
     factory { FifaSharedPreferenceDataSource(androidContext()) }
+    factory<FiFaSharedPreferenceRepository> { FiFaSharedPreferenceRepositoryImpl(get()) }
     //endregion
 }
 
