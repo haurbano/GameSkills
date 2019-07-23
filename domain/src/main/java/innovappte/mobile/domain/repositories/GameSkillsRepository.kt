@@ -1,8 +1,9 @@
 package innovappte.mobile.gamesskills.domain.repositories
 
-import com.hamilton.gamesskillst.domain.models.GameSkill
+import innovappte.mobile.domain.models.GameSkill
+import io.reactivex.Single
 
 interface GameSkillsRepository {
-    fun getFifaGameSkills(listener: (List<GameSkill>) -> Unit)
+    fun getFifaGameSkills(): Single<List<GameSkill>>
     fun downloadSkillsVideos(skills: List<GameSkill>)
 }

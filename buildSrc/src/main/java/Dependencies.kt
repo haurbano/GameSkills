@@ -1,5 +1,6 @@
 import Versions.app_compat_version
 import Versions.constrain_layout_version
+import Versions.fire_store_version
 import Versions.firebase_core_version
 import Versions.firebase_database
 import Versions.koin_version
@@ -12,6 +13,7 @@ object Versions {
     const val firebase_core_version = "17.0.0"
     const val firebase_database     = "18.0.0"
     const val constrain_layout_version = "2.0.0-alpha3"
+    const val fire_store_version = "20.1.0"
 }
 
 object Dependencies {
@@ -26,6 +28,7 @@ object Dependencies {
     val recyclerView        =    "com.android.support:recyclerview-v7:28.0.0"
     val firebaseCore        =    "com.google.firebase:firebase-core:$firebase_core_version"
     val firebaseDatabase    =    "com.google.firebase:firebase-database:$firebase_database"
+    val fireStore           =    "com.google.firebase:firebase-firestore:$fire_store_version"
 }
 
 object TestDependencies {

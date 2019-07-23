@@ -1,15 +1,15 @@
-package com.hamilton.gamesskillst.domain.models
+package innovappte.mobile.domain.models
 
 import java.io.Serializable
 
-data class GameSkill(
-    val index: Int,
-    val name: SkillName,
-    val ps4ControlAlternativeVideo: String,
-    val ps4ControlClassicVideo: String,
-    val skillMoves: Int,
-    val skillVideo: String,
-    val xboxControlAlternativeVideo: String,
-    val xboxControlClassicVideo: String,
-    val actions: List<Action>
-) : Serializable
+class GameSkill: Serializable {
+    var index: Int = 0
+    lateinit var name: SkillName
+    lateinit var ps4ControlAlternativeVideo: String
+    lateinit var ps4ControlClassicVideo: String
+    var skillMoves: Int = 0
+    lateinit var skillVideo: String
+    lateinit var xboxControlAlternativeVideo: String
+    lateinit var xboxControlClassicVideo: String
+    lateinit var actions: List<Action>
+}

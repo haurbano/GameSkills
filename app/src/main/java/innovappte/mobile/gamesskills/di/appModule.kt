@@ -4,6 +4,8 @@ import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import innovappte.mobile.data.datasources.FifaSharedPreferenceDataSource
 import innovappte.mobile.domain.usecases.impl.FifaConfigUseCaseImpl
 import innovappte.mobile.data.DataFilesManager
+import innovappte.mobile.data.datasources.FiFaGameSkillsFirebaseDataSource
+import innovappte.mobile.data.mappers.GameSkillsMapper
 import innovappte.mobile.data.repositories.FiFaSharedPreferenceRepositoryImpl
 import innovappte.mobile.domain.repositories.FiFaSharedPreferenceRepository
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
@@ -21,11 +23,13 @@ import org.koin.dsl.module
 val appModule: Module = module(override = true) {
     // region Fifa
     factory<FifaGameSkillsUseCase> { FifaGameSkillsUseCaseImpl(get()) }
-    factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), androidContext()) }
+    factory<GameSkillsRepository> { GameSkillRepositoryImpl(androidContext(), get(), get()) }
     factory { DataFilesManager(androidContext()) }
     factory<FifaConfigUseCase> { FifaConfigUseCaseImpl(get()) }
     factory { FifaSharedPreferenceDataSource(androidContext()) }
     factory<FiFaSharedPreferenceRepository> { FiFaSharedPreferenceRepositoryImpl(get()) }
+    factory { GameSkillsMapper() }
+    factory { FiFaGameSkillsFirebaseDataSource(get()) }
     //endregion
 }
 

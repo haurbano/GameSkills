@@ -1,5 +1,8 @@
-package com.hamilton.gamesskillst.domain.models
+package innovappte.mobile.domain.models
 
 import java.io.Serializable
 
-data class SkillName(val default: String, val es: String) : Serializable
+class SkillName: Serializable {
+    var default: String = ""
+    var es: String = ""
+}

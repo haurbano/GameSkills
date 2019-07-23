@@ -9,7 +9,7 @@ import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
-import com.hamilton.gamesskillst.domain.models.GameSkill
+import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.data.VideoPathUtils
 import kotlinx.android.synthetic.main.activity_skill_details.*

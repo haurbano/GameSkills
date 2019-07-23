@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hamilton.gamesskillst.domain.models.GameSkill
+import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.presentation.common.ViewStatus
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity

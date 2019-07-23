@@ -3,37 +3,26 @@ package innovappte.mobile.data.repositories
 import android.app.DownloadManager
 import android.content.Context
 
-import com.hamilton.gamesskillst.domain.models.GameSkillsResponse
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import android.content.Context.DOWNLOAD_SERVICE
 import android.net.Uri
 import android.util.Log
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.hamilton.gamesskillst.domain.models.GameSkill
+import innovappte.mobile.domain.models.GameSkill
+import innovappte.mobile.data.datasources.FiFaGameSkillsFirebaseDataSource
+import innovappte.mobile.data.mappers.GameSkillsMapper
 import innovappte.mobile.gamesskills.data.VideoPathUtils
+import io.reactivex.Single
 
 
 class GameSkillRepositoryImpl(
-        private val firebaseDatabase: FirebaseDatabase,
-        private val context: Context
+        private val context: Context,
+        private val fiFaGameSkillsFirebaseDataSource: FiFaGameSkillsFirebaseDataSource,
+        private val gameSkillsMapper: GameSkillsMapper
 ) : GameSkillsRepository {
 
-    override fun getFifaGameSkills(listener: (List<GameSkill>) -> Unit) {
-        val skillsReference = firebaseDatabase.reference.child("skills")
-        skillsReference.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val gameSkills = dataSnapshot.getValue(GameSkillsResponse::class.java)
-                listener(gameSkills?.skills ?: emptyList())
-            }
-
-        })
+    override fun getFifaGameSkills(): Single<List<GameSkill>> {
+        return fiFaGameSkillsFirebaseDataSource.getFiFaSkills()
+                .map{ gameSkillsMapper(it) }
     }
 
     override fun downloadSkillsVideos(skills: List<GameSkill>){
@@ -47,14 +36,20 @@ class GameSkillRepositoryImpl(
     private fun downloadVideo(skill: GameSkill, videoType: VideoType) {
         Log.d("GameSkills Debug", "Downloading new video - ${skill.name.default}")
         val downloadManager = context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager?
-        downloadManager?.enqueue(buildRequest(skill, videoType))
+        val request = buildRequest(skill, videoType)
+        if (request != null) {
+            downloadManager?.enqueue(request)
+        }
     }
 
-    private fun buildRequest(skill: GameSkill, videoType: VideoType): DownloadManager.Request {
+    private fun buildRequest(skill: GameSkill, videoType: VideoType): DownloadManager.Request? {
         val uri = Uri.parse(getVideoUrl(skill, videoType))
         val destinationUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, skill, videoType))
-        return DownloadManager.Request(uri)
-                .setDestinationUri(destinationUri)
+        return try {
+            DownloadManager.Request(uri).setDestinationUri(destinationUri)
+        } catch (e: IllegalArgumentException) {
+            null
+        }
     }
 
     private fun alreadyDownloaded(skill: GameSkill, videoType: VideoType): Boolean {

@@ -2,7 +2,7 @@ package innovappte.mobile.gamesskills.data
 
 import android.content.Context
 import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
-import com.hamilton.gamesskillst.domain.models.GameSkill
+import innovappte.mobile.domain.models.GameSkill
 import java.io.File
 
 object VideoPathUtils {

@@ -38,7 +38,7 @@ dependencies {
     implementation Dependencies.rxJava
     implementation Dependencies.recyclerView
     implementation Dependencies.firebaseCore
-    implementation Dependencies.firebaseDatabase
+    implementation Dependencies.fireStore
 
     testImplementation TestDependencies.junit
 

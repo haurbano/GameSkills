@@ -36,6 +36,8 @@ dependencies {
     implementation Dependencies.firebaseCore
     implementation Dependencies.firebaseDatabase
     implementation Dependencies.koin
+    implementation Dependencies.rxJava
+    implementation Dependencies.fireStore
 
     testImplementation TestDependencies.junit
 
