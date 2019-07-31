@@ -8,10 +8,10 @@ import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import innovappte.mobile.common.L
-import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import innovappte.mobile.domain.models.GameSkill
+import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
-import innovappte.mobile.gamesskills.data.VideoPathUtils
+import innovappte.mobile.data.VideoPathUtils
 
 
 class FifaSkillAdapter(var items: List<GameSkill>, val context: Context, val clickListener: (GameSkill) -> Unit): RecyclerView.Adapter<FifaSkillAdapter.ViewHolder>() {
@@ -28,13 +28,13 @@ class FifaSkillAdapter(var items: List<GameSkill>, val context: Context, val cli
         val nameTextView = holder.itemView.findViewById<TextView>(R.id.textViewNameGameSkill)
         val videoViewSkill = holder.itemView.findViewById<TextureView>(R.id.videoViewGameSkill)
         nameTextView.text = items[position].name.default
-        setupVideo(videoViewSkill, position, GameSkillRepositoryImpl.VideoType.Skill)
+        setupVideo(videoViewSkill, position, VideoType.Main)
         holder.itemView.setOnClickListener { clickListener(items[position]) }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
-    private fun setupVideo(videoView: TextureView, position: Int, videoType: GameSkillRepositoryImpl.VideoType) {
+    private fun setupVideo(videoView: TextureView, position: Int, videoType: VideoType) {
         val gameSkill = items[position]
         videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, gameSkill, videoType))
         videoView.surfaceTextureListener = surfaceListener

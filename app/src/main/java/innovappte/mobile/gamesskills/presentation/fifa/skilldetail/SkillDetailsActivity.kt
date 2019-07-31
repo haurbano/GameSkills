@@ -8,10 +8,10 @@ import android.view.WindowManager
 import android.widget.MediaController
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import innovappte.mobile.domain.models.GameSkill
+import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
-import innovappte.mobile.gamesskills.data.VideoPathUtils
+import innovappte.mobile.data.VideoPathUtils
 import kotlinx.android.synthetic.main.activity_skill_details.*
 
 class SkillDetailsActivity : AppCompatActivity() {
@@ -45,11 +45,11 @@ class SkillDetailsActivity : AppCompatActivity() {
     }
 
     private fun startVideos(skill: GameSkill) {
-        startVideo(skill, videoViewSkillDetails, GameSkillRepositoryImpl.VideoType.Skill)
-        startVideo(skill, videoViewControl, GameSkillRepositoryImpl.VideoType.Ps4Classic)
+        startVideo(skill, videoViewSkillDetails, VideoType.Main)
+        startVideo(skill, videoViewControl, VideoType.Ps4Classic)
     }
 
-    private fun startVideo(skill: GameSkill, videoView: VideoView, videoType: GameSkillRepositoryImpl.VideoType) {
+    private fun startVideo(skill: GameSkill, videoView: VideoView, videoType: VideoType) {
 
         val videoMediaController = MediaController(this)
         val videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(this, skill, videoType))

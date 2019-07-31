@@ -23,7 +23,7 @@ import org.koin.dsl.module
 val appModule: Module = module(override = true) {
     // region Fifa
     factory<FifaGameSkillsUseCase> { FifaGameSkillsUseCaseImpl(get()) }
-    factory<GameSkillsRepository> { GameSkillRepositoryImpl(androidContext(), get(), get()) }
+    factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), get(), get()) }
     factory { DataFilesManager(androidContext()) }
     factory<FifaConfigUseCase> { FifaConfigUseCaseImpl(get()) }
     factory { FifaSharedPreferenceDataSource(androidContext()) }

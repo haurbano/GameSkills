@@ -5,16 +5,16 @@ import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Single
 import io.reactivex.subjects.SingleSubject
 
-class FiFaGameSkillsFirebaseDataSource(
+class FiFaCelebrationsFirebaseDataSource(
         private val fireBaseDatabase: FirebaseFirestore
 ) {
-    fun getFiFaSkills(): Single<List<DocumentSnapshot>> {
+    fun getFiFaCelebrations(): Single<List<DocumentSnapshot>> {
         val single = SingleSubject.create<List<DocumentSnapshot>>()
 
-        fireBaseDatabase.collection(FiFaCollections.SKILLS).get()
+        fireBaseDatabase.collection(FiFaCollections.CELEBRATIONS).get()
                 .addOnSuccessListener { result -> single.onSuccess(result.documents) }
                 .addOnFailureListener { error -> single.onError(error) }
-        
+
         return single
     }
 }
