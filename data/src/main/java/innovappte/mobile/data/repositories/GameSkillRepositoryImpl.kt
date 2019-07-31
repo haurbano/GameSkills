@@ -20,8 +20,7 @@ class GameSkillRepositoryImpl(
     }
 
     override fun downloadSkillsVideos(skills: List<GameSkill>){
-        val videos = skills.map { it.getVideosToDownloadList() }
-                .flatten()
+        val videos = skills.map { it.getVideosToDownloadList() }.flatten()
         videos.forEach { video ->
             videoDataSource.downloadVideo(video.url, video.getTargetFileName())
         }
