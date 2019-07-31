@@ -7,6 +7,7 @@ import android.net.Uri
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import innovappte.mobile.common.L
 import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
@@ -41,18 +42,20 @@ class FifaSkillAdapter(var items: List<GameSkill>, val context: Context, val cli
 
     private val surfaceListener = object : TextureView.SurfaceTextureListener {
         override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture?, p1: Int, p2: Int) {
-//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            L.i("onSurfaceTextureSizeChanged")
         }
 
         override fun onSurfaceTextureUpdated(p0: SurfaceTexture?) {
-//            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            L.i("onSurfaceTextureUpdated")
         }
 
         override fun onSurfaceTextureDestroyed(p0: SurfaceTexture?): Boolean {
+            L.i("onSurfaceTextureDestroyed")
             return true
         }
 
         override fun onSurfaceTextureAvailable(surfaceTexture: SurfaceTexture?, p1: Int, p2: Int) {
+            L.i("onSurfaceTextureAvailable")
             val surface = Surface(surfaceTexture)
             val mediaPlayer = MediaPlayer()
             mediaPlayer.setDataSource(videoUri.path)
