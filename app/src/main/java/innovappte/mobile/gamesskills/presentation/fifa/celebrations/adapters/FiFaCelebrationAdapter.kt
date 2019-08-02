@@ -1,44 +1,45 @@
-package innovappte.mobile.gamesskills.presentation.fifa.skills.adapters
+package innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters
 
 import android.content.Context
 import android.graphics.SurfaceTexture
 import android.media.MediaPlayer
 import android.net.Uri
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import innovappte.mobile.common.L
-import innovappte.mobile.domain.models.GameSkill
+import innovappte.mobile.data.VideoPathUtils
+import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
-import innovappte.mobile.data.VideoPathUtils
 
-
-class FifaSkillAdapter(
-        var items: List<GameSkill>,
-        val context: Context,
-        val clickListener: (GameSkill) -> Unit
-): RecyclerView.Adapter<FifaSkillAdapter.ViewHolder>() {
+class FiFaCelebrationAdapter(
+        var items: List<FiFaCelebration>,
+        val context: Context
+): RecyclerView.Adapter<FiFaCelebrationAdapter.ViewHolder>() {
 
     lateinit var videoUri: Uri
 
+    class ViewHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
+        val title = itemview.findViewById<TextView>(R.id.textViewItemCelebrationTitle)
+        val video = itemview.findViewById<TextureView>(R.id.textureViewVideoCelebrationItem)
+        val controlVideo = itemview.findViewById<TextureView>(R.id.textureViewControlCelebrationVideo)
+        val imgSteps = itemview.findViewById<ImageView>(R.id.imgCelebrationSteps)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_fifa_game_skill, null, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_fifa_celebration, null, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val celebration = items[position]
+        holder.title.text = celebration.name.default
+        setupVideo(holder.video, position, VideoType.Main)
 
-        holder.nameTextView.text = items[position].name.default
-        setupVideo(holder.videoViewSkill, position, VideoType.Main)
-        holder.itemView.setOnClickListener { clickListener(items[position]) }
-    }
-
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val nameTextView = itemView.findViewById<TextView>(R.id.textViewNameGameSkill)
-        val videoViewSkill = itemView.findViewById<TextureView>(R.id.videoViewGameSkill)
     }
 
     private fun setupVideo(videoView: TextureView, position: Int, videoType: VideoType) {

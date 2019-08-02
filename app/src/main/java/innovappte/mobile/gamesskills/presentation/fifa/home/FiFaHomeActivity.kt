@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.domain.models.ConsoleType
 import innovappte.mobile.gamesskills.domain.models.FifaControlMode
+import innovappte.mobile.gamesskills.presentation.fifa.celebrations.CelebrationListActivity
 import innovappte.mobile.gamesskills.presentation.fifa.skills.FifaSkillListActivity
 import innovappte.mobile.gamesskills.presentation.utils.FiFaDialog
 import kotlinx.android.synthetic.main.activity_fifa_home.*
@@ -63,8 +64,14 @@ class FiFaHomeActivity : AppCompatActivity() {
         textViewPlays.setOnClickListener { openSkillList() }
         imgBgPlays.setOnClickListener { openSkillList() }
 
-        textViewCelebrations.setOnClickListener { showComingFeatureDialog() }
-        imgBgCelebrations.setOnClickListener { showComingFeatureDialog() }
+        textViewCelebrations.setOnClickListener { openCelebrations() }
+        imgBgCelebrations.setOnClickListener { openCelebrations() }
+
+        textViewPlayers.setOnClickListener { showComingFeatureDialog() }
+        imgBgPlayers.setOnClickListener { showComingFeatureDialog() }
+
+        textViewAdvise.setOnClickListener { showComingFeatureDialog() }
+        imgBgAdvise.setOnClickListener { showComingFeatureDialog() }
 
         imgBtnPs4.setOnClickListener { changeConsoleType(ConsoleType.PS4) }
         imgbtnXbox.setOnClickListener { changeConsoleType(ConsoleType.XBOX) }
@@ -74,6 +81,10 @@ class FiFaHomeActivity : AppCompatActivity() {
 
     private fun openSkillList() {
         startActivity(FifaSkillListActivity.getIntent(this))
+    }
+
+    private fun openCelebrations() {
+        startActivity(CelebrationListActivity.getIntent(this))
     }
 
     private fun showComingFeatureDialog() {
