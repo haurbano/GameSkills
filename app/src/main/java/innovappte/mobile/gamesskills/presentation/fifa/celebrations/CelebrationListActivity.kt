@@ -24,6 +24,11 @@ class CelebrationListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_celebration_list)
         setupRecylerView()
+        setupLayoutListener()
+    }
+
+    private fun setupLayoutListener() {
+        imgBackCelebrationList.setOnClickListener { finish() }
     }
 
     private fun setupRecylerView() {

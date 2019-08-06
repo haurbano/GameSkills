@@ -40,4 +40,8 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="CustomSearchView" parent="Widget.AppCompat.Light.SearchView">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>
