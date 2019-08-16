@@ -4,6 +4,6 @@ import java.io.Serializable
 
 class Action: Serializable{
     lateinit var action: String
-    lateinit var button: String
+    var button: String? = null
     var index: Int = 0
 }

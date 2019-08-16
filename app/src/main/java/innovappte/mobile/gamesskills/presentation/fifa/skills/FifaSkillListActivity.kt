@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
-import innovappte.mobile.gamesskills.presentation.common.ViewStatus
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity
 import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.FifaSkillAdapter
 import kotlinx.android.synthetic.main.activity_fifa_skill_list.*
@@ -65,12 +64,7 @@ class FifaSkillListActivity : AppCompatActivity() {
     }
 
     private fun listenLoaderStatus() {
-        viewModel.loaderViewStatus.observe(this, Observer { viewStatus ->
-            when (viewStatus) {
-                ViewStatus.HIDDEN -> hideLoader()
-                ViewStatus.SHOWED -> showLoader()
-            }
-        })
+
     }
 
     private fun hideLoader() {

@@ -1,20 +1,31 @@
 package innovappte.mobile.data.repositories
 
+import innovappte.mobile.data.datasources.ActionsDataSource
 import innovappte.mobile.data.datasources.FiFaCelebrationsFirebaseDataSource
+import innovappte.mobile.data.datasources.FiFaFirebaseCollections.CELEBRATIONS
 import innovappte.mobile.data.datasources.VideosDataSource
-import innovappte.mobile.data.mappers.FiFaCelebrationMapper
+import innovappte.mobile.domain.models.Action
 import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.repositories.FiFaCelebrationsRepositoy
+import io.reactivex.Observable
 import io.reactivex.Single
 
-class FiFaCelebrationsRepositoyImpl(
+class FiFaCelebrationsRepositoryImpl(
         private val videosDataSource: VideosDataSource,
         private val fiFaCelebrationsFirebaseDataSource: FiFaCelebrationsFirebaseDataSource,
-        private val fiFaCelebrationMapper: FiFaCelebrationMapper
+        private val actionsDataSource: ActionsDataSource
 ): FiFaCelebrationsRepositoy {
+
     override fun getFiFaCelebrations(): Single<List<FiFaCelebration>> {
         return fiFaCelebrationsFirebaseDataSource.getFiFaCelebrations()
-                .map { fiFaCelebrationMapper(it) }
+                .flattenAsObservable { it }
+                .flatMap({getActions(it.id)}, { celebration, retrieveActions ->
+                       celebration.apply { actions = retrieveActions }
+                }).toList()
+    }
+
+    private fun getActions(documentId: String): Observable<List<Action>> {
+        return actionsDataSource.getActions(CELEBRATIONS, documentId).toObservable()
     }
 
     override fun downloadCelebrationsVideos(celebrations: List<FiFaCelebration>) {

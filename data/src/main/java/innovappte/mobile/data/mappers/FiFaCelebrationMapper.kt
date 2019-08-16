@@ -9,9 +9,14 @@ class FiFaCelebrationMapper {
         input.forEach { document ->
             val gameSkill = document.toObject(FiFaCelebration::class.java)
             if (gameSkill != null) {
+                gameSkill.id = document.id
                 celebrationList.add(gameSkill)
             }
         }
         return celebrationList
+    }
+
+    operator fun invoke(document: DocumentSnapshot): FiFaCelebration? {
+        return document.toObject(FiFaCelebration::class.java)
     }
 }

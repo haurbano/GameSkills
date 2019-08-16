@@ -7,17 +7,23 @@ import android.net.Uri
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import innovappte.mobile.common.L
 import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
+import innovappte.mobile.gamesskills.presentation.fifa.ActionsAdapter
+import innovappte.mobile.gamesskills.presentation.mappers.ActionMapper
+import innovappte.mobile.gamesskills.presentation.mappers.ButtonMapper
 
 class FiFaCelebrationAdapter(
         var items: List<FiFaCelebration>,
         val context: Context
 ): RecyclerView.Adapter<FiFaCelebrationAdapter.ViewHolder>() {
+
+    val actionAdapter by lazy { ActionsAdapter(emptyList(), ActionMapper(), ButtonMapper()) }
 
     lateinit var videoUri: Uri
 
@@ -25,12 +31,14 @@ class FiFaCelebrationAdapter(
         val title = itemview.findViewById<TextView>(R.id.textViewItemCelebrationTitle)
         val video = itemview.findViewById<TextureView>(R.id.textureViewVideoCelebrationItem)
         val controlVideo = itemview.findViewById<TextureView>(R.id.textureViewControlCelebrationVideo)
-        val imgSteps = itemview.findViewById<ImageView>(R.id.imgCelebrationSteps)
+        val imgSteps = itemview.findViewById<RecyclerView>(R.id.recyclerCelebrationSteps)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_fifa_celebration, null, false)
-        return ViewHolder(view)
+        return ViewHolder(view).apply {
+            imgSteps.layoutManager = LinearLayoutManager(parent.context, LinearLayoutManager.HORIZONTAL, false)
+        }
     }
 
     override fun getItemCount() = items.size
@@ -39,6 +47,7 @@ class FiFaCelebrationAdapter(
         val celebration = items[position]
         holder.title.text = celebration.name.default
         setupVideo(holder.video, position, VideoType.Main)
+        holder.imgSteps.adapter = actionAdapter.apply { data = celebration.actions }
 
     }
 

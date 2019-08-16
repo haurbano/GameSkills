@@ -3,6 +3,7 @@ package innovappte.mobile.domain.models
 class FiFaCelebration: VideosContainer() {
 
     var index: Int = 0
+    lateinit var id: String
     lateinit var name: Name
     lateinit var celebrationVideo: String
     lateinit var ps4ControlVideo: String

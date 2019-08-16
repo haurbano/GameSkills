@@ -10,13 +10,11 @@ import io.reactivex.Single
 
 class GameSkillRepositoryImpl(
         private val fiFaGameSkillsFirebaseDataSource: FiFaGameSkillsFirebaseDataSource,
-        private val videoDataSource: VideosDataSource,
-        private val gameSkillsMapper: GameSkillsMapper
+        private val videoDataSource: VideosDataSource
 ) : GameSkillsRepository {
 
     override fun getFifaGameSkills(): Single<List<GameSkill>> {
         return fiFaGameSkillsFirebaseDataSource.getFiFaSkills()
-                .map{ gameSkillsMapper(it) }
     }
 
     override fun downloadSkillsVideos(skills: List<GameSkill>){

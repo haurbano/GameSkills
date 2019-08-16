@@ -4,11 +4,13 @@ import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
 import innovappte.mobile.data.datasources.FifaSharedPreferenceDataSource
 import innovappte.mobile.domain.usecases.impl.FifaConfigUseCaseImpl
 import innovappte.mobile.data.DataFilesManager
+import innovappte.mobile.data.datasources.ActionsDataSource
 import innovappte.mobile.data.datasources.FiFaCelebrationsFirebaseDataSource
 import innovappte.mobile.data.datasources.FiFaGameSkillsFirebaseDataSource
+import innovappte.mobile.data.mappers.ActionMapper
 import innovappte.mobile.data.mappers.FiFaCelebrationMapper
 import innovappte.mobile.data.mappers.GameSkillsMapper
-import innovappte.mobile.data.repositories.FiFaCelebrationsRepositoyImpl
+import innovappte.mobile.data.repositories.FiFaCelebrationsRepositoryImpl
 import innovappte.mobile.data.repositories.FiFaSharedPreferenceRepositoryImpl
 import innovappte.mobile.domain.repositories.FiFaCelebrationsRepositoy
 import innovappte.mobile.domain.repositories.FiFaSharedPreferenceRepository
@@ -30,9 +32,9 @@ import org.koin.dsl.module
 val appModule: Module = module(override = true) {
     // region Fifa
     factory<FifaGameSkillsUseCase> { FifaGameSkillsUseCaseImpl(get()) }
-    factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), get(), get()) }
+    factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), get()) }
     factory { GameSkillsMapper() }
-    factory { FiFaGameSkillsFirebaseDataSource(get()) }
+    factory { FiFaGameSkillsFirebaseDataSource(get(), get()) }
     factory { DataFilesManager(androidContext()) }
 
     factory<FifaConfigUseCase> { FifaConfigUseCaseImpl(get()) }
@@ -41,9 +43,11 @@ val appModule: Module = module(override = true) {
 
 
     factory<FiFaCelebrationUseCase> { FiFaCelebrationUseCaseImpl(get()) }
-    factory<FiFaCelebrationsRepositoy> { FiFaCelebrationsRepositoyImpl(get(), get(), get()) }
+    factory<FiFaCelebrationsRepositoy> { FiFaCelebrationsRepositoryImpl(get(), get(), get()) }
     factory { FiFaCelebrationMapper() }
-    factory { FiFaCelebrationsFirebaseDataSource(get()) }
+    factory { FiFaCelebrationsFirebaseDataSource(get(), get()) }
+    factory { ActionsDataSource(get(), get()) }
+    factory { ActionMapper() }
     //endregion
 }
 
