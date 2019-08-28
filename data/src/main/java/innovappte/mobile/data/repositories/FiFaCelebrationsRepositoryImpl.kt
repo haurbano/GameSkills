@@ -19,8 +19,8 @@ class FiFaCelebrationsRepositoryImpl(
     override fun getFiFaCelebrations(): Single<List<FiFaCelebration>> {
         return fiFaCelebrationsFirebaseDataSource.getFiFaCelebrations()
                 .flattenAsObservable { it }
-                .flatMap({getActions(it.id)}, { celebration, retrieveActions ->
-                       celebration.apply { actions = retrieveActions }
+                .flatMap({getActions(it.id)}, { celebration, retrievedActions ->
+                       celebration.apply { actions = retrievedActions }
                 }).toList()
     }
 

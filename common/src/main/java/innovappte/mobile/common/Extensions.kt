@@ -2,7 +2,7 @@ package innovappte.mobile.common
 
 import android.util.Log
 
-object L{
+object L {
     private const val TAG_I = "Info: "
     private const val TAG_E = "Error: "
 
