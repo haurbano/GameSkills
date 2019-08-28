@@ -32,7 +32,6 @@ dependencies {
     implementation project(":common")
 
     implementation Dependencies.kotlin
-    implementation Dependencies.appCompat
     implementation Dependencies.gson
     implementation Dependencies.firebaseCore
     implementation Dependencies.firebaseDatabase

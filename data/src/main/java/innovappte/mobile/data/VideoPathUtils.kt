@@ -5,6 +5,7 @@ import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.domain.models.VideosContainer
 import java.io.File
 
+// TODO: Remove this singleton, Use a class
 object VideoPathUtils {
     private const val VIDEOS_FOLDER_NAME = "GameSkillsVideos"
 

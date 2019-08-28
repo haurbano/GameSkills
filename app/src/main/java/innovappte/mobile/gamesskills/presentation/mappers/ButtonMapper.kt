@@ -2,6 +2,8 @@ package innovappte.mobile.gamesskills.presentation.mappers
 
 import innovappte.mobile.gamesskills.R
 
+//TODO: Move this to other module in order to use it from different presentation modules
+// o features modules.
 class ButtonMapper {
     operator fun invoke(button: String): List<Int>? {
         return map[button]
