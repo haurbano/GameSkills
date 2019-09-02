@@ -8,6 +8,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // TODO: Remove this, not necessary.
         Thread.sleep(1000)
     }
 

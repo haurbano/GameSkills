@@ -29,9 +29,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":domain")
+    implementation project(":common")
 
     implementation Dependencies.kotlin
-    implementation Dependencies.appCompat
     implementation Dependencies.gson
     implementation Dependencies.firebaseCore
     implementation Dependencies.firebaseDatabase

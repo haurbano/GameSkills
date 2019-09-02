@@ -5,6 +5,7 @@ import android.util.Log
 import java.io.IOException
 import java.nio.charset.Charset
 
+// TODO: Add an interface DataFileManage, Hamilton you should not depend of concrete classes
 class DataFilesManager(private val context: Context) {
     fun getAssetAsString(filename: String): String {
         return try {

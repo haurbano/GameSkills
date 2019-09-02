@@ -1,34 +1,26 @@
-package innovappte.mobile.gamesskills.data
+package innovappte.mobile.data
 
 import android.content.Context
-import innovappte.mobile.data.repositories.GameSkillRepositoryImpl
-import innovappte.mobile.domain.models.GameSkill
+import innovappte.mobile.domain.models.VideoType
+import innovappte.mobile.domain.models.VideosContainer
 import java.io.File
 
+// TODO: Remove this singleton, Use a class
 object VideoPathUtils {
     private const val VIDEOS_FOLDER_NAME = "GameSkillsVideos"
 
-    fun getVideoFile(context: Context, skill: GameSkill, videoType: GameSkillRepositoryImpl.VideoType): File? {
+    fun getVideoFile(context: Context, videoContainer: VideosContainer, videoType: VideoType): File? {
         return when (videoType) {
-            GameSkillRepositoryImpl.VideoType.Skill -> getVideoFile(context, skill)
-            GameSkillRepositoryImpl.VideoType.Ps4Alternative -> getPs4AlternativeVideo(context, skill)
-            GameSkillRepositoryImpl.VideoType.Ps4Classic -> getPs4ClassicVideo(context, skill)
+            VideoType.Main -> getVideoFile(context, videoContainer.getMainVideo().getTargetFileName())
+            VideoType.Ps4Alternative ->  getVideoFile(context, videoContainer.getPs4AlternativeVideo().getTargetFileName())
+            VideoType.Ps4Classic ->  getVideoFile(context, videoContainer.getPs4ClassicVideo().getTargetFileName())
+            VideoType.XboxClassic ->  getVideoFile(context, videoContainer.getXboxClassicVideo().getTargetFileName())
+            VideoType.XboxAlterative ->  getVideoFile(context, videoContainer.getXboxAlternativeVideo().getTargetFileName())
         }
     }
 
-    private fun getVideoFile(context: Context, skill: GameSkill): File? {
+    fun getVideoFile(context: Context, videoTargetFileName: String): File? {
         val folder = context.getExternalFilesDir(VIDEOS_FOLDER_NAME)
-        return File(folder, skill.name.default)
+        return File(folder, videoTargetFileName)
     }
-
-    private fun getPs4ClassicVideo(context: Context, skill: GameSkill): File? {
-        val folder = context.getExternalFilesDir(VIDEOS_FOLDER_NAME)
-        return File(folder, "ps4_classic_${skill.name.default}")
-    }
-
-    private fun getPs4AlternativeVideo(context: Context, skill: GameSkill): File? {
-        val folder = context.getExternalFilesDir(VIDEOS_FOLDER_NAME)
-        return File(folder, "ps4_alternative_${skill.name.default}")
-    }
-
 }
