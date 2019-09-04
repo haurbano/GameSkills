@@ -20,6 +20,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -40,6 +44,8 @@ dependencies {
     implementation Dependencies.recyclerView
     implementation Dependencies.firebaseCore
     implementation Dependencies.fireStore
+    implementation Dependencies.videoPlayerToro
+    implementation Dependencies.videoPlayerToroExoPlayer
 
     testImplementation TestDependencies.junit
 

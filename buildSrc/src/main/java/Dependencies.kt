@@ -5,15 +5,17 @@ import Versions.firebase_core_version
 import Versions.firebase_database
 import Versions.koin_version
 import Versions.kotlin_version
+import Versions.videoPlayerToroVersion
 
 object Versions {
-    const val kotlin_version        = "1.3.41"
-    const val app_compat_version    = "28.0.0"
-    const val koin_version           = "2.0.1"
-    const val firebase_core_version = "17.0.0"
-    const val firebase_database     = "18.0.0"
-    const val constrain_layout_version = "2.0.0-alpha3"
-    const val fire_store_version = "20.1.0"
+    const val kotlin_version            = "1.3.41"
+    const val app_compat_version        = "28.0.0"
+    const val koin_version              = "2.0.1"
+    const val firebase_core_version     = "17.0.0"
+    const val firebase_database         = "18.0.0"
+    const val constrain_layout_version  = "2.0.0-alpha3"
+    const val fire_store_version        = "20.1.0"
+    const val videoPlayerToroVersion    = "3.6.2.2903"
 }
 
 object Dependencies {
@@ -29,6 +31,8 @@ object Dependencies {
     val firebaseCore        =    "com.google.firebase:firebase-core:$firebase_core_version"
     val firebaseDatabase    =    "com.google.firebase:firebase-database:$firebase_database"
     val fireStore           =    "com.google.firebase:firebase-firestore:$fire_store_version"
+    val videoPlayerToro     =       "im.ene.toro3:toro:$videoPlayerToroVersion"
+    val videoPlayerToroExoPlayer =  "im.ene.toro3:toro-ext-exoplayer:$videoPlayerToroVersion"
 }
 
 object TestDependencies {

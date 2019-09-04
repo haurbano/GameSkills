@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import im.ene.toro.CacheManager
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters.FiFaCelebrationAdapter
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_celebration_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class CelebrationListActivity : AppCompatActivity() {
 
@@ -33,9 +37,9 @@ class CelebrationListActivity : AppCompatActivity() {
 
     private fun setupRecylerView() {
         with(recyclerViewCelebrations) {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@CelebrationListActivity)
             adapter = celebrationsAdapter
+            layoutManager = LinearLayoutManager(this@CelebrationListActivity)
+            cacheManager = CacheManager.DEFAULT
         }
     }
 

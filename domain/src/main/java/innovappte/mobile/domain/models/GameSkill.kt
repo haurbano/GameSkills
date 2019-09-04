@@ -24,7 +24,7 @@ class GameSkill: VideosContainer(), Serializable {
             Video(ps4ControlAlternativeVideo, name.default, VideoType.Ps4Alternative)
 
     override fun getXboxClassicVideo() =
-            Video(xboxControlAlternativeVideo, name.default, VideoType.XboxAlterative)
+            Video(xboxControlClassicVideo, name.default, VideoType.XboxClassic)
 
     override fun getXboxAlternativeVideo() =
             Video(xboxControlAlternativeVideo, name.default, VideoType.XboxAlterative)

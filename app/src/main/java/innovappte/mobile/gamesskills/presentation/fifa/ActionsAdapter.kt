@@ -25,7 +25,7 @@ class ActionsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val action = data[position]
-        val actionResource = actionMapper(action.action)
+        val actionResource = actionMapper(action.action ?: "")
         holder.imgAction.setImageResource(actionResource?.first() ?: 0)
 
         val button = action.button
