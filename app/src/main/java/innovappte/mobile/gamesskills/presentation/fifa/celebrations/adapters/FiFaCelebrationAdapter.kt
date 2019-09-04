@@ -2,7 +2,6 @@ package innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +12,6 @@ import im.ene.toro.ToroUtil
 import im.ene.toro.exoplayer.ExoPlayerViewHelper
 import im.ene.toro.media.PlaybackInfo
 import im.ene.toro.widget.Container
-import innovappte.mobile.common.L
 import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.models.VideoType
@@ -39,7 +37,6 @@ class FiFaCelebrationAdapter(
         val imgSteps = itemview.findViewById<RecyclerView>(R.id.recyclerCelebrationSteps)
 
         override fun initialize(container: Container, playbackInfo: PlaybackInfo) {
-            L.i("Initialize video")
             if(videoHelper == null) {
                 videoHelper = ExoPlayerViewHelper(this, videoUri)
             }

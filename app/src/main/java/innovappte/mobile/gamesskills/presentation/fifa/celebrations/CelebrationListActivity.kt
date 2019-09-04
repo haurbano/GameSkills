@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import im.ene.toro.CacheManager
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters.FiFaCelebrationAdapter
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_celebration_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

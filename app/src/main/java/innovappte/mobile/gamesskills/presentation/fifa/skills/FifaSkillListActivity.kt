@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import im.ene.toro.CacheManager
+import im.ene.toro.widget.Container
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity
@@ -21,7 +23,7 @@ class FifaSkillListActivity : AppCompatActivity() {
     private val onItemListListener = { skill: GameSkill -> goToDetails(skill) }
     private val gameSkillsAdapter: FifaSkillAdapter by lazy { FifaSkillAdapter(emptyList(), this, onItemListListener) }
 
-    private lateinit var recyclerViewSkills: RecyclerView
+    private lateinit var recyclerViewSkills: Container
 
     companion object {
         fun getIntent(context: Context): Intent {
@@ -53,6 +55,7 @@ class FifaSkillListActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@FifaSkillListActivity)
             adapter = gameSkillsAdapter
+            cacheManager = CacheManager.DEFAULT
         }
     }
 

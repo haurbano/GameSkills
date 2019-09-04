@@ -7,6 +7,12 @@ import android.net.Uri
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.exoplayer2.ui.PlayerView
+import im.ene.toro.ToroPlayer
+import im.ene.toro.ToroUtil
+import im.ene.toro.exoplayer.ExoPlayerViewHelper
+import im.ene.toro.media.PlaybackInfo
+import im.ene.toro.widget.Container
 import innovappte.mobile.common.L
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.domain.models.VideoType
@@ -32,44 +38,58 @@ class FifaSkillAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.nameTextView.text = items[position].name.default
-        setupVideo(holder.videoViewSkill, position, VideoType.Main)
+        setupVideo(position, VideoType.Main)
         holder.itemView.setOnClickListener { clickListener(items[position]) }
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), ToroPlayer {
+        var videoHelper: ExoPlayerViewHelper? = null
         val nameTextView = itemView.findViewById<TextView>(R.id.textViewNameGameSkill)
-        val videoViewSkill = itemView.findViewById<TextureView>(R.id.videoViewGameSkill)
+        val videoViewSkill = itemView.findViewById<PlayerView>(R.id.videoViewGameSkill)
+
+        override fun initialize(container: Container, playbackInfo: PlaybackInfo) {
+            if(videoHelper == null) {
+                videoHelper = ExoPlayerViewHelper(this, videoUri)
+            }
+
+            videoHelper?.initialize(container, playbackInfo)
+        }
+
+
+        override fun isPlaying() = videoHelper?.isPlaying ?: false
+
+        override fun getPlayerView() = videoViewSkill
+
+        override fun pause() {
+            videoHelper?.pause()
+        }
+
+        override fun wantsToPlay(): Boolean {
+            return ToroUtil.visibleAreaOffset(this, itemView.parent) >= 0.85
+        }
+
+        override fun play() {
+            videoHelper?.play()
+        }
+
+        override fun getCurrentPlaybackInfo(): PlaybackInfo {
+            return videoHelper?.latestPlaybackInfo ?: PlaybackInfo()
+        }
+
+        override fun release() {
+            if (videoHelper != null) {
+                videoHelper?.release()
+                videoHelper = null
+            }
+        }
+
+        override fun getPlayerOrder() = adapterPosition
     }
 
-    private fun setupVideo(videoView: TextureView, position: Int, videoType: VideoType) {
+    private fun setupVideo(position: Int, videoType: VideoType) {
         val gameSkill = items[position]
         videoUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, gameSkill, videoType))
-        videoView.surfaceTextureListener = surfaceListener
     }
 
-    private val surfaceListener = object : TextureView.SurfaceTextureListener {
-        override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture?, p1: Int, p2: Int) {
-            L.i("onSurfaceTextureSizeChanged")
-        }
 
-        override fun onSurfaceTextureUpdated(p0: SurfaceTexture?) {
-            L.i("onSurfaceTextureUpdated")
-        }
-
-        override fun onSurfaceTextureDestroyed(p0: SurfaceTexture?): Boolean {
-            L.i("onSurfaceTextureDestroyed")
-            return true
-        }
-
-        override fun onSurfaceTextureAvailable(surfaceTexture: SurfaceTexture?, p1: Int, p2: Int) {
-            L.i("onSurfaceTextureAvailable")
-            val surface = Surface(surfaceTexture)
-            val mediaPlayer = MediaPlayer()
-            mediaPlayer.setDataSource(videoUri.path)
-            mediaPlayer.setSurface(surface)
-            mediaPlayer.isLooping = true
-            mediaPlayer.prepareAsync()
-            mediaPlayer.setOnPreparedListener { mediaPlayer.start() }
-        }
-    }
 }
