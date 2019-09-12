@@ -10,7 +10,7 @@ import innovappte.mobile.domain.repositories.FiFaSharedPreferenceRepository
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import org.koin.dsl.module
 
-val respositoriesModule = module {
+val repositoriesModule = module {
     factory<GameSkillsRepository> { GameSkillRepositoryImpl(get(), get()) }
     factory<FiFaCelebrationsRepositoy> { FiFaCelebrationsRepositoryImpl(get(), get(), get()) }
     factory<FiFaSharedPreferenceRepository> { FiFaSharedPreferenceRepositoryImpl(get()) }

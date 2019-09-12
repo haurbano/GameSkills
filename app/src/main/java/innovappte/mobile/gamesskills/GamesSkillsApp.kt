@@ -3,7 +3,7 @@ package innovappte.mobile.gamesskills
 import android.app.Application
 import innovappte.mobile.data.di.dataModule
 import innovappte.mobile.gamesskills.di.appModule
-import innovappte.mobile.gamesskills.di.respositoriesModule
+import innovappte.mobile.gamesskills.di.repositoriesModule
 import innovappte.mobile.gamesskills.di.useCasesModule
 import innovappte.mobile.gamesskills.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +19,7 @@ class GamesSkillsApp : Application() {
                     viewModelModule,
                     dataModule,
                     useCasesModule,
-                    respositoriesModule
+                    repositoriesModule
             ))
         }
     }
