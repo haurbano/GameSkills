@@ -1,15 +1,19 @@
-package innovappte.mobile.gamesskills.presentation.mappers
+package innovappte.mobile.gamesskills.actionmapper
 
 import innovappte.mobile.gamesskills.R
 
 //TODO: Move this to other module in order to use it from different presentation modules
 // o features modules.
 class ButtonMapper {
-    operator fun invoke(button: String): List<Int>? {
+    operator fun invoke(button: String?): List<Int>? {
+        if (button == null) return emptyList()
         return map[button]
     }
-    private val map = hashMapOf<String, List<Int>>(
+    private val map = hashMapOf(
             "button1"   to listOf(R.drawable.ic_button_ps4_button1),
+            "button2"   to listOf(R.drawable.ic_button_ps4_button2),
+            "button3"   to listOf(R.drawable.ic_button_ps4_button3),
+            "button4"   to listOf(R.drawable.ic_button_ps4_button4),
             "r1"        to listOf(R.drawable.ic_button_ps4_r1),
             "r2"        to listOf(R.drawable.ic_button_ps4_r2),
             "l1"        to listOf(R.drawable.ic_button_ps4_l1),
@@ -24,6 +28,11 @@ class ButtonMapper {
             "lDown"     to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_down),
             "lLeft"     to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_left),
             "lRight"    to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_right),
-            "lRight"    to listOf(R.drawable.ic_button_ps4_r, R.drawable.ic_button_ps4_right)
+            "lRight"    to listOf(R.drawable.ic_button_ps4_r, R.drawable.ic_button_ps4_right),
+
+            "hold"      to listOf(R.drawable.ic_action_ps4_hold_en),
+            "next"      to listOf(R.drawable.ic_action_ps4_next),
+            "press"     to listOf(),
+            "tap"       to listOf()
     )
 }

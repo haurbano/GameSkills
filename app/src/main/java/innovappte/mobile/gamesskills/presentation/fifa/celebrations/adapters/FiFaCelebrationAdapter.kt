@@ -3,29 +3,30 @@ package innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters
 import android.content.Context
 import android.net.Uri
 import android.view.*
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.exoplayer2.ui.PlayerView
 import im.ene.toro.ToroPlayer
 import im.ene.toro.ToroUtil
+import im.ene.toro.exoplayer.Config
 import im.ene.toro.exoplayer.ExoPlayerViewHelper
+import im.ene.toro.exoplayer.MediaSourceBuilder
 import im.ene.toro.media.PlaybackInfo
 import im.ene.toro.widget.Container
+import innovappte.mobile.common.L
 import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
-import innovappte.mobile.gamesskills.presentation.fifa.ActionsAdapter
-import innovappte.mobile.gamesskills.presentation.mappers.ActionMapper
-import innovappte.mobile.gamesskills.presentation.mappers.ButtonMapper
+import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
 
 class FiFaCelebrationAdapter(
         var items: List<FiFaCelebration>,
-        val context: Context
+        val context: Context,
+        val actionToViewMapper: ActionToViewMapper
 ): RecyclerView.Adapter<FiFaCelebrationAdapter.ViewHolder>() {
-
-    val actionAdapter by lazy { ActionsAdapter(emptyList(), ActionMapper(), ButtonMapper()) }
 
     lateinit var videoUri: Uri
 
@@ -33,12 +34,14 @@ class FiFaCelebrationAdapter(
         var videoHelper: ExoPlayerViewHelper? = null
         val title = itemview.findViewById<TextView>(R.id.textViewItemCelebrationTitle)
         val video = itemview.findViewById<PlayerView>(R.id.playerView)
-//        val controlVideo = itemview.findViewById<TextureView>(R.id.textureViewControlCelebrationVideo)
-        val imgSteps = itemview.findViewById<RecyclerView>(R.id.recyclerCelebrationSteps)
+        val imgSteps = itemview.findViewById<LinearLayout>(R.id.recyclerCelebrationSteps)
 
         override fun initialize(container: Container, playbackInfo: PlaybackInfo) {
             if(videoHelper == null) {
-                videoHelper = ExoPlayerViewHelper(this, videoUri)
+                val videoConfig = Config.Builder()
+                        .setMediaSourceBuilder(MediaSourceBuilder.LOOPING)
+                        .build()
+                videoHelper = ExoPlayerViewHelper(this, videoUri, null, videoConfig)
             }
 
             videoHelper?.initialize(container, playbackInfo)
@@ -79,9 +82,7 @@ class FiFaCelebrationAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_fifa_celebration, parent, false)
-        return ViewHolder(view).apply {
-            imgSteps.layoutManager = LinearLayoutManager(parent.context, LinearLayoutManager.HORIZONTAL, false)
-        }
+        return ViewHolder(view)
     }
 
     override fun getItemCount() = items.size
@@ -90,7 +91,10 @@ class FiFaCelebrationAdapter(
         val celebration = items[position]
         holder.title.text = celebration.name.default
         setupVideo(position, VideoType.Main)
-        holder.imgSteps.adapter = actionAdapter.apply { data = celebration.actions }
+        val views = actionToViewMapper(context, celebration.actions)
+        holder.imgSteps.removeAllViews()
+        views.forEach { holder.imgSteps.addView(it) }
+        holder.imgSteps.invalidate()
     }
 
     private fun setupVideo(position: Int, videoType: VideoType) {

@@ -10,6 +10,7 @@ class FiFaCelebrationUseCaseImpl(
 ): FiFaCelebrationUseCase {
     override fun getCelebrations(): Single<List<FiFaCelebration>> {
         return celebrationsRepository.getFiFaCelebrations()
+                .map { celebrations -> celebrations.sortedBy { it.index } }
     }
 
     override fun downloadCelebrationsVideos(celebrations: List<FiFaCelebration>) {

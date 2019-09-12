@@ -26,6 +26,7 @@ class FiFaCelebrationsRepositoryImpl(
 
     private fun getActions(documentId: String): Observable<List<Action>> {
         return actionsDataSource.getActions(CELEBRATIONS, documentId).toObservable()
+                .map { actions -> actions.sortedBy { it.index } }
     }
 
     override fun downloadCelebrationsVideos(celebrations: List<FiFaCelebration>) {
