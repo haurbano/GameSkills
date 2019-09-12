@@ -30,6 +30,7 @@ dependencies {
 
     implementation project(":domain")
     implementation project(":common")
+    implementation project(":authentication")
 
     implementation Dependencies.kotlin
     implementation Dependencies.gson

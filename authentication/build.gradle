@@ -1,8 +1,6 @@
-// TODO: This should be a kotlin module, not an Android module.
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
 
@@ -13,8 +11,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -28,12 +26,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation Dependencies.kotlin
     implementation Dependencies.rxJava
+    implementation Dependencies.firebaseAuth
 
     testImplementation TestDependencies.junit
-}
-repositories {
-    mavenCentral()
 }
