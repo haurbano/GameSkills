@@ -1,6 +1,7 @@
 import Versions.app_compat_version
 import Versions.constrain_layout_version
 import Versions.fire_store_version
+import Versions.firebase_auth_version
 import Versions.firebase_core_version
 import Versions.firebase_database
 import Versions.koin_version
@@ -16,6 +17,7 @@ object Versions {
     const val constrain_layout_version  = "2.0.0-alpha3"
     const val fire_store_version        = "20.1.0"
     const val videoPlayerToroVersion    = "3.6.2.2903"
+    const val firebase_auth_version     = "19.0.0"
 }
 
 object Dependencies {
@@ -33,6 +35,7 @@ object Dependencies {
     val fireStore           =    "com.google.firebase:firebase-firestore:$fire_store_version"
     val videoPlayerToro     =       "im.ene.toro3:toro:$videoPlayerToroVersion"
     val videoPlayerToroExoPlayer =  "im.ene.toro3:toro-ext-exoplayer:$videoPlayerToroVersion"
+    val firebaseAuth        =   "com.google.firebase:firebase-auth:$firebase_auth_version"
 }
 
 object TestDependencies {

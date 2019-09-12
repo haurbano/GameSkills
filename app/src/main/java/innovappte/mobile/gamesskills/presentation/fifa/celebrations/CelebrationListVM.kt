@@ -2,6 +2,7 @@ package innovappte.mobile.gamesskills.presentation.fifa.celebrations
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import innovappte.mobile.common.L
 import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.usecases.interfaces.FiFaCelebrationUseCase
 import io.reactivex.disposables.CompositeDisposable
@@ -16,10 +17,11 @@ class CelebrationListVM(
     private val disposables = CompositeDisposable()
 
     fun prepareCelebrationData() {
-        val disposable = celebrationUseCase.getCelebrations().subscribe { celebrations ->
-            celebrationList.value = celebrations
-            celebrationUseCase.downloadCelebrationsVideos(celebrations)
-        }
+        val disposable = celebrationUseCase.getCelebrations().subscribe({ celebrations ->
+                    celebrationList.value = celebrations
+                    celebrationUseCase.downloadCelebrationsVideos(celebrations)
+                }, { error -> L.e(error)}
+        )
         disposables.add(disposable)
     }
 }

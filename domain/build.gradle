@@ -33,10 +33,6 @@ dependencies {
     implementation Dependencies.rxJava
 
     testImplementation TestDependencies.junit
-
-    // TODO: Do We need this here? Should be just unit test in this module
-    androidTestImplementation AndroidTestDependencies.runner
-    androidTestImplementation AndroidTestDependencies.espresso
 }
 repositories {
     mavenCentral()

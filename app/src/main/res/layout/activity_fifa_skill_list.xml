@@ -8,7 +8,7 @@
     android:background="@drawable/bg_fifa_skills"
     android:paddingTop="36dp">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <im.ene.toro.widget.Container
         android:id="@+id/recyclerViewSkills"
         android:layout_width="match_parent"
         android:layout_height="0dp"
