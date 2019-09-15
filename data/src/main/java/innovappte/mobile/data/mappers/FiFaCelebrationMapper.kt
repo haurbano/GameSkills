@@ -7,10 +7,10 @@ class FiFaCelebrationMapper {
     operator fun invoke(input: List<DocumentSnapshot>): List<FiFaCelebration> {
         val celebrationList = arrayListOf<FiFaCelebration>()
         input.forEach { document ->
-            val gameSkill = document.toObject(FiFaCelebration::class.java)
-            if (gameSkill != null) {
-                gameSkill.id = document.id
-                celebrationList.add(gameSkill)
+            val celebration = document.toObject(FiFaCelebration::class.java)
+            if (celebration != null) {
+                celebration.id = document.id
+                celebrationList.add(celebration)
             }
         }
         return celebrationList

@@ -5,5 +5,5 @@ import java.io.Serializable
 class Action: Serializable{
     var action: String? = null
     var button: String? = null
-    var index: Int = 0
+    var index: Long = 0
 }

@@ -1,6 +1,7 @@
 package innovappte.mobile.data.datasources
 
 import com.google.firebase.firestore.FirebaseFirestore
+import innovappte.mobile.common.L
 import innovappte.mobile.data.datasources.FiFaFirebaseCollections.ACTIONS
 import innovappte.mobile.data.mappers.ActionMapper
 import innovappte.mobile.domain.models.Action
@@ -13,6 +14,7 @@ class ActionsDataSource(
 ) {
     fun getActions(collection: String, documentId: String): Single<List<Action>> {
         val subject = SingleSubject.create<List<Action>>()
+        actionMapper.currentId = documentId
         fireBaseDatabase.collection(collection).document(documentId).collection(ACTIONS).get()
                 .addOnSuccessListener { subject.onSuccess(actionMapper(it.documents)) }
                 .addOnFailureListener { subject.onError(it) }

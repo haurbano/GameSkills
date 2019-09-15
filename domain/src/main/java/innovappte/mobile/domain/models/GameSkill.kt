@@ -5,6 +5,7 @@ import java.io.Serializable
 class GameSkill: VideosContainer(), Serializable {
 
     var index: Int = 0
+    lateinit var id: String
     lateinit var name: Name
     lateinit var ps4ControlAlternativeVideo: String
     lateinit var ps4ControlClassicVideo: String

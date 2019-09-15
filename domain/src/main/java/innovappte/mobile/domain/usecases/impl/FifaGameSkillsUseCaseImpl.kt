@@ -9,6 +9,7 @@ import io.reactivex.Single
 class FifaGameSkillsUseCaseImpl(private val gameSkillsRepository: GameSkillsRepository): FifaGameSkillsUseCase {
     override fun getGameSkills(): Single<List<GameSkill>> {
         return gameSkillsRepository.getFifaGameSkills()
+                .map { skills -> skills.sortedBy { it.index } }
     }
 
     override fun downloadSkillVideos(skills: List<GameSkill>): GameSkillsResponse.VideoSkillsDownloadStatus {

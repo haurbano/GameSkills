@@ -1,6 +1,5 @@
 package innovappte.mobile.data.datasources
 
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import innovappte.mobile.data.mappers.GameSkillsMapper
 import innovappte.mobile.domain.models.GameSkill
