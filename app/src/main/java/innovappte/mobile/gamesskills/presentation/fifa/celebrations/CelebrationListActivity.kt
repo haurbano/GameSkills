@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import im.ene.toro.CacheManager
+import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
 import innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters.FiFaCelebrationAdapter
@@ -17,7 +18,11 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class CelebrationListActivity : AppCompatActivity() {
 
     private val viewModel: CelebrationListVM by viewModel()
-    private val celebrationsAdapter by lazy { FiFaCelebrationAdapter(emptyList(), this, ActionToViewMapper()) }
+    private val celebrationsAdapter by lazy { FiFaCelebrationAdapter(
+            emptyList(),
+            this,
+            ActionToViewMapper(),
+            VideoPathUtils(this)) }
 
     companion object {
         fun getIntent(context: Context) = Intent(context, CelebrationListActivity::class.java)

@@ -23,7 +23,8 @@ class FifaSkillAdapter(
         var items: List<GameSkill>,
         val context: Context,
         val clickListener: (GameSkill) -> Unit,
-        val actionToViewMapper: ActionToViewMapper
+        val actionToViewMapper: ActionToViewMapper,
+        val videoPathUtils: VideoPathUtils
 ): RecyclerView.Adapter<FifaSkillAdapter.ViewHolder>() {
 
     lateinit var currentVideoUri: Uri
@@ -72,7 +73,7 @@ class FifaSkillAdapter(
 
     private fun setupVideo(position: Int, videoType: VideoType) {
         val gameSkill = items[position]
-        currentVideoUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, gameSkill, videoType))
+        currentVideoUri = Uri.fromFile(videoPathUtils.getVideoFile(gameSkill, videoType))
     }
 
 

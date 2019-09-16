@@ -5,21 +5,22 @@ import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.domain.models.VideosContainer
 import java.io.File
 
-// TODO: Remove this singleton, Use a class
-object VideoPathUtils {
-    private const val VIDEOS_FOLDER_NAME = "GameSkillsVideos"
+class VideoPathUtils(private val context: Context) {
+    companion object {
+        private const val VIDEOS_FOLDER_NAME = "GameSkillsVideos"
+    }
 
-    fun getVideoFile(context: Context, videoContainer: VideosContainer, videoType: VideoType): File? {
+    fun getVideoFile(videoContainer: VideosContainer, videoType: VideoType): File? {
         return when (videoType) {
-            VideoType.Main -> getVideoFile(context, videoContainer.getMainVideo().getTargetFileName())
-            VideoType.Ps4Alternative ->  getVideoFile(context, videoContainer.getPs4AlternativeVideo().getTargetFileName())
-            VideoType.Ps4Classic ->  getVideoFile(context, videoContainer.getPs4ClassicVideo().getTargetFileName())
-            VideoType.XboxClassic ->  getVideoFile(context, videoContainer.getXboxClassicVideo().getTargetFileName())
-            VideoType.XboxAlterative ->  getVideoFile(context, videoContainer.getXboxAlternativeVideo().getTargetFileName())
+            VideoType.Main -> getVideoFile(videoContainer.getMainVideo().getTargetFileName())
+            VideoType.Ps4Alternative ->  getVideoFile(videoContainer.getPs4AlternativeVideo().getTargetFileName())
+            VideoType.Ps4Classic ->  getVideoFile(videoContainer.getPs4ClassicVideo().getTargetFileName())
+            VideoType.XboxClassic ->  getVideoFile(videoContainer.getXboxClassicVideo().getTargetFileName())
+            VideoType.XboxAlterative ->  getVideoFile(videoContainer.getXboxAlternativeVideo().getTargetFileName())
         }
     }
 
-    fun getVideoFile(context: Context, videoTargetFileName: String): File? {
+    fun getVideoFile(videoTargetFileName: String): File? {
         val folder = context.getExternalFilesDir(VIDEOS_FOLDER_NAME)
         return File(folder, videoTargetFileName)
     }

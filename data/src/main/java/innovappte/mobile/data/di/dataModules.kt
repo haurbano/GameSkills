@@ -9,6 +9,6 @@ import org.koin.dsl.module
 
 val dataModule = module {
     single { FirebaseFirestore.getInstance() }
-    factory { VideosDataSource(androidContext()) }
+    factory { VideosDataSource(androidContext(),get()) }
     single<Authenticator> { FirebaseAuthenticator() }
 }

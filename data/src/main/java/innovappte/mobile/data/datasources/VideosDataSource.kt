@@ -6,7 +6,10 @@ import android.net.Uri
 import innovappte.mobile.common.L
 import innovappte.mobile.data.VideoPathUtils
 
-class VideosDataSource(private val context: Context) {
+class VideosDataSource(
+        private val context: Context,
+        private val videoPathUtils: VideoPathUtils
+) {
 
     fun downloadVideo(url: String, targetFileName: String) {
         if (alreadyDownloaded(targetFileName)) return
@@ -21,7 +24,7 @@ class VideosDataSource(private val context: Context) {
 
     private fun buildRequest(url: String, videoName: String): DownloadManager.Request? {
         val uri = Uri.parse(url)
-        val videoFile = VideoPathUtils.getVideoFile(context, videoName)
+        val videoFile = videoPathUtils.getVideoFile(videoName)
         val destinationUri = Uri.fromFile(videoFile)
         return try {
             DownloadManager.Request(uri).setDestinationUri(destinationUri)
@@ -31,7 +34,7 @@ class VideosDataSource(private val context: Context) {
     }
 
     private fun alreadyDownloaded(targetFileName: String): Boolean {
-        val file = VideoPathUtils.getVideoFile(context, targetFileName)
+        val file = videoPathUtils.getVideoFile(targetFileName)
         return file?.exists() ?: false
     }
 }

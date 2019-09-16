@@ -75,6 +75,7 @@ class FiFaHomeActivity : AppCompatActivity() {
 
         imgBtnPs4.setOnClickListener { changeConsoleType(ConsoleType.PS4) }
         imgbtnXbox.setOnClickListener { changeConsoleType(ConsoleType.XBOX) }
+
         textViewModeClasic.setOnClickListener { changeControlMode(FifaControlMode.CLASSIC) }
         textViewModeAlternative.setOnClickListener { changeControlMode(FifaControlMode.ALTERNATIVE) }
     }

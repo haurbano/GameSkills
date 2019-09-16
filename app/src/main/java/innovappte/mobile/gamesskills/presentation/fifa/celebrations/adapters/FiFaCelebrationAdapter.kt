@@ -20,7 +20,8 @@ import innovappte.mobile.gamesskills.presentation.videoplayer.ToroPlayerSetup
 class FiFaCelebrationAdapter(
         var items: List<FiFaCelebration>,
         val context: Context,
-        val actionToViewMapper: ActionToViewMapper
+        val actionToViewMapper: ActionToViewMapper,
+        val videoPathUtils: VideoPathUtils
 ): RecyclerView.Adapter<FiFaCelebrationAdapter.ViewHolder>() {
 
     lateinit var currentVideoUri: Uri
@@ -66,6 +67,6 @@ class FiFaCelebrationAdapter(
 
     private fun setupVideo(position: Int, videoType: VideoType) {
         val celebration = items[position]
-        currentVideoUri = Uri.fromFile(VideoPathUtils.getVideoFile(context, celebration, videoType))
+        currentVideoUri = Uri.fromFile(videoPathUtils.getVideoFile(celebration, videoType))
     }
 }

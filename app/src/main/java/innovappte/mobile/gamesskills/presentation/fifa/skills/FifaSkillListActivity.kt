@@ -9,19 +9,25 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import im.ene.toro.CacheManager
 import im.ene.toro.widget.Container
-import innovappte.mobile.common.L
+import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity
 import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.FifaSkillAdapter
+import kotlinx.android.synthetic.main.activity_fifa_skill_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class FifaSkillListActivity : AppCompatActivity() {
 
     private val viewModel: FifaSkillsListVM by viewModel()
     private val onItemListListener = { skill: GameSkill -> goToDetails(skill) }
-    private val gameSkillsAdapter: FifaSkillAdapter by lazy { FifaSkillAdapter(emptyList(), this, onItemListListener, ActionToViewMapper()) }
+    private val gameSkillsAdapter: FifaSkillAdapter by lazy { FifaSkillAdapter(
+            emptyList(),
+            this,
+            onItemListListener,
+            ActionToViewMapper(),
+            VideoPathUtils(this)) }
 
     private lateinit var recyclerViewSkills: Container
 
@@ -42,7 +48,7 @@ class FifaSkillListActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-
+        imgBackSkillLsit.setOnClickListener { finish() }
     }
 
     override fun onResume() {
