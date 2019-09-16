@@ -9,6 +9,7 @@ import innovappte.mobile.data.datasources.FifaSharedPreferenceDataSource
 import innovappte.mobile.data.mappers.ActionMapper
 import innovappte.mobile.data.mappers.FiFaCelebrationMapper
 import innovappte.mobile.data.mappers.GameSkillsMapper
+import innovappte.mobile.gamesskills.presentation.fifa.celebrationdetail.CelebrationDetailVM
 import innovappte.mobile.gamesskills.presentation.fifa.celebrations.CelebrationListVM
 import innovappte.mobile.gamesskills.presentation.fifa.home.FifaHomeVM
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsVM
@@ -40,4 +41,5 @@ val viewModelModule = module {
     viewModel { CelebrationListVM(get()) }
     viewModel { SplashVM(get()) }
     viewModel { SkillDetailsVM(get(),get(),get()) }
+    viewModel { CelebrationDetailVM(get(), get(), get()) }
 }

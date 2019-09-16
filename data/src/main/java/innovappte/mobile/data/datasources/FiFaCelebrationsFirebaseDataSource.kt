@@ -23,4 +23,20 @@ class FiFaCelebrationsFirebaseDataSource(
 
         return single.hide()
     }
+
+    fun getFiFaCelebration(celebrationId: String): Single<FiFaCelebration> {
+        val single = SingleSubject.create<FiFaCelebration>()
+        fireBaseDatabase.collection(FiFaFirebaseCollections.CELEBRATIONS)
+                .document(celebrationId).get()
+                .addOnSuccessListener { result ->
+                    val mappedCelebration = fiFaCelebrationMapper(result)
+                    if (mappedCelebration != null) {
+                        single.onSuccess(mappedCelebration)
+                    } else {
+                        single.onError(Throwable("Error parsing single celebration"))
+                    }
+                }
+                .addOnFailureListener { single.onError(it) }
+        return single.hide()
+    }
 }

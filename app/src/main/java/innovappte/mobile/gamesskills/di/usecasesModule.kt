@@ -1,11 +1,9 @@
 package innovappte.mobile.gamesskills.di
 
-import innovappte.mobile.domain.usecases.impl.AuthenticateUserUseCaseImpl
-import innovappte.mobile.domain.usecases.impl.FiFaCelebrationUseCaseImpl
-import innovappte.mobile.domain.usecases.impl.FifaConfigUseCaseImpl
-import innovappte.mobile.domain.usecases.impl.SelectVideoTypeUseCaseImpl
+import innovappte.mobile.domain.usecases.impl.*
 import innovappte.mobile.domain.usecases.interfaces.AuthenticateUserUseCase
 import innovappte.mobile.domain.usecases.interfaces.FiFaCelebrationUseCase
+import innovappte.mobile.domain.usecases.interfaces.GetFifaCelebrationUseCase
 import innovappte.mobile.domain.usecases.interfaces.SelectVideoTypeUseCase
 import innovappte.mobile.gamesskills.domain.usecases.impl.FifaGameSkillsUseCaseImpl
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaConfigUseCase
@@ -19,4 +17,5 @@ val useCasesModule: Module = module(override = true) {
     factory<FiFaCelebrationUseCase> { FiFaCelebrationUseCaseImpl(get()) }
     factory<AuthenticateUserUseCase> { AuthenticateUserUseCaseImpl(get()) }
     factory<SelectVideoTypeUseCase> { SelectVideoTypeUseCaseImpl() }
+    factory<GetFifaCelebrationUseCase> { GetFifaCelebrationUseCaseImpl(get()) }
 }

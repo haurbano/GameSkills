@@ -56,7 +56,7 @@ class FiFaDialog: DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_fifa, container, false)
-        dialog.window.setBackgroundDrawable(context?.getDrawable(R.drawable.bg_dialog_fifa))
+        dialog?.window?.setBackgroundDrawable(context?.getDrawable(R.drawable.bg_dialog_fifa))
         val txtTitle = view.findViewById<TextView>(R.id.txtTitle)
         txtTitle.text = getString(titleResource)
 

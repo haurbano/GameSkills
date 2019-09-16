@@ -8,8 +8,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import im.ene.toro.CacheManager
 import innovappte.mobile.data.VideoPathUtils
+import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
+import innovappte.mobile.gamesskills.presentation.fifa.celebrationdetail.CelebrationDetailActivity
 import innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters.FiFaCelebrationAdapter
 import kotlinx.android.synthetic.main.activity_celebration_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -22,7 +24,8 @@ class CelebrationListActivity : AppCompatActivity() {
             emptyList(),
             this,
             ActionToViewMapper(),
-            VideoPathUtils(this)) }
+            VideoPathUtils(this),
+            onCelebrationClicked) }
 
     companion object {
         fun getIntent(context: Context) = Intent(context, CelebrationListActivity::class.java)
@@ -60,5 +63,8 @@ class CelebrationListActivity : AppCompatActivity() {
         })
     }
 
-
+    private val onCelebrationClicked = { celebration: FiFaCelebration ->
+        val intent = CelebrationDetailActivity.getIntent(this, celebration.id)
+        startActivity(intent)
+    }
 }

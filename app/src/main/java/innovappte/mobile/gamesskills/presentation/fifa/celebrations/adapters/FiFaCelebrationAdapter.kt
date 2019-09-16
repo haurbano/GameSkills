@@ -21,7 +21,8 @@ class FiFaCelebrationAdapter(
         var items: List<FiFaCelebration>,
         val context: Context,
         val actionToViewMapper: ActionToViewMapper,
-        val videoPathUtils: VideoPathUtils
+        val videoPathUtils: VideoPathUtils,
+        val onCelebrationClicked: (celebration: FiFaCelebration) -> Unit = {}
 ): RecyclerView.Adapter<FiFaCelebrationAdapter.ViewHolder>() {
 
     lateinit var currentVideoUri: Uri
@@ -63,6 +64,7 @@ class FiFaCelebrationAdapter(
         holder.imgSteps.removeAllViews()
         views.forEach { holder.imgSteps.addView(it) }
         holder.imgSteps.invalidate()
+        holder.itemView.setOnClickListener { onCelebrationClicked(celebration) }
     }
 
     private fun setupVideo(position: Int, videoType: VideoType) {

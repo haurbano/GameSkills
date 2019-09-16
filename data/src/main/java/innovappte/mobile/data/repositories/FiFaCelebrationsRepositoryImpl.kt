@@ -35,4 +35,8 @@ class FiFaCelebrationsRepositoryImpl(
             videosDataSource.downloadVideo(video.url, video.getTargetFileName())
         }
     }
+
+    override fun getCelebration(celebrationId: String): Single<FiFaCelebration> {
+        return fiFaCelebrationsFirebaseDataSource.getFiFaCelebration(celebrationId)
+    }
 }
