@@ -1,4 +1,4 @@
-package innovappte.mobile.gamesskills.presentation.fifa.skills.adapters
+package innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters
 
 import android.content.Context
 import android.net.Uri
@@ -9,46 +9,34 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.exoplayer2.ui.PlayerView
 import im.ene.toro.ToroPlayer
-import im.ene.toro.ToroUtil.visibleAreaOffset
+import im.ene.toro.ToroUtil
 import im.ene.toro.exoplayer.Config
 import im.ene.toro.exoplayer.ExoPlayerViewHelper
 import im.ene.toro.exoplayer.MediaSourceBuilder
 import im.ene.toro.media.PlaybackInfo
 import im.ene.toro.widget.Container
 import innovappte.mobile.data.VideoPathUtils
-import innovappte.mobile.domain.models.GameSkill
+import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
+import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.BaseViewHolder
 
-class SkillItemViewHolder(
+class CelebrationItemViewHolder(
         inflater: LayoutInflater,
         parent: ViewGroup,
         val actionToViewMapper: ActionToViewMapper,
-        val clickListener: (GameSkill) -> Unit,
         private val videoPathUtils: VideoPathUtils,
-        val context: Context
-        ): BaseViewHolder(inflater.inflate(R.layout.item_fifa_game_skill, parent, false)), ToroPlayer {
+        val context: Context,
+        val onCelebrationClicked: (FiFaCelebration) -> Unit
+        ): BaseViewHolder(inflater.inflate(R.layout.item_fifa_celebration, parent, false)), ToroPlayer {
 
     private var currentVideoUri: Uri? = null
     private var helper: ExoPlayerViewHelper? = null
-    private val player = itemView.findViewById(R.id.videoViewGameSkill) as PlayerView
+    private val player = itemView.findViewById(R.id.playerView) as PlayerView
 
-
-    private val nameTextView: TextView = itemView.findViewById(R.id.textViewNameGameSkill)
-    private val skillStepsContainer = itemView.findViewById<LinearLayout>(R.id.skillStepsContainer)
-
-    override fun bind(item: Any?) {
-        val skill = item as GameSkill
-        val videoUri = Uri.fromFile(videoPathUtils.getVideoFile(skill, VideoType.Main))
-        currentVideoUri = videoUri
-        nameTextView.text = skill.name.default
-        itemView.setOnClickListener { clickListener(skill) }
-        skillStepsContainer.removeAllViews()
-        val stepsViews = actionToViewMapper(context, skill.actions)
-        stepsViews.forEach { skillStepsContainer.addView(it) }
-        skillStepsContainer.invalidate()
-    }
+    private val title = itemView.findViewById<TextView>(R.id.textViewItemCelebrationTitle)
+    private val imgSteps = itemView.findViewById<LinearLayout>(R.id.recyclerCelebrationSteps)
 
     override fun isPlaying(): Boolean = helper?.isPlaying ?: false
 
@@ -58,7 +46,7 @@ class SkillItemViewHolder(
         helper?.pause()
     }
 
-    override fun wantsToPlay(): Boolean = visibleAreaOffset(this, itemView.parent) >= 0.65
+    override fun wantsToPlay(): Boolean = ToroUtil.visibleAreaOffset(this, itemView.parent) >= 0.65
 
     override fun play() {
         helper!!.play()
@@ -82,4 +70,16 @@ class SkillItemViewHolder(
     }
 
     override fun getPlayerOrder(): Int = adapterPosition
+
+    override fun bind(item: Any?) {
+        val celebration = item as FiFaCelebration
+        currentVideoUri = Uri.fromFile(videoPathUtils.getVideoFile(celebration, VideoType.Main))
+        title.text = celebration.name.default
+        val views = actionToViewMapper(context, celebration.actions)
+        imgSteps.removeAllViews()
+        views.forEach { imgSteps.addView(it) }
+        imgSteps.invalidate()
+        itemView.setOnClickListener { onCelebrationClicked(celebration) }
+    }
+
 }
