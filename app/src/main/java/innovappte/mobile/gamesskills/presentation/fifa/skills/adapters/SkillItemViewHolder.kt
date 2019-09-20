@@ -48,6 +48,7 @@ class SkillItemViewHolder(
         val stepsViews = actionToViewMapper(context, skill.actions)
         stepsViews.forEach { skillStepsContainer.addView(it) }
         skillStepsContainer.invalidate()
+        player.videoSurfaceView.setOnClickListener { clickListener(skill) }
     }
 
     override fun isPlaying(): Boolean = helper?.isPlaying ?: false

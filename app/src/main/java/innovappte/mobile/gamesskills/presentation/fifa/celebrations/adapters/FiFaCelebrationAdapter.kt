@@ -18,8 +18,6 @@ class FiFaCelebrationAdapter(
         val onCelebrationClicked: (celebration: FiFaCelebration) -> Unit = {}
 ): RecyclerView.Adapter<BaseViewHolder>() {
 
-    lateinit var currentVideoUri: Uri
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return CelebrationItemViewHolder(
