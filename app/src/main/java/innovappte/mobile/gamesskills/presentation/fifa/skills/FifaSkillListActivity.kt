@@ -22,12 +22,12 @@ class FifaSkillListActivity : AppCompatActivity() {
 
     private val viewModel: FifaSkillsListVM by viewModel()
     private val onItemListListener = { skill: GameSkill -> goToDetails(skill) }
-    private val gameSkillsAdapter: FifaSkillAdapter by lazy { FifaSkillAdapter(
+    private val gameSkillsAdapter = FifaSkillAdapter(
             emptyList(),
             this,
             onItemListListener,
             ActionToViewMapper(),
-            VideoPathUtils(this)) }
+            VideoPathUtils(this))
 
     private lateinit var recyclerViewSkills: Container
 
@@ -58,9 +58,8 @@ class FifaSkillListActivity : AppCompatActivity() {
 
     private fun setUpRecyclerView() {
         with(recyclerViewSkills) {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@FifaSkillListActivity)
             adapter = gameSkillsAdapter
+            layoutManager = LinearLayoutManager(this@FifaSkillListActivity)
             cacheManager = CacheManager.DEFAULT
         }
     }

@@ -34,7 +34,7 @@ class CelebrationListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_celebration_list)
-        setupRecylerView()
+        setupRecyclerView()
         setupLayoutListener()
     }
 
@@ -42,7 +42,7 @@ class CelebrationListActivity : AppCompatActivity() {
         imgBackCelebrationList.setOnClickListener { finish() }
     }
 
-    private fun setupRecylerView() {
+    private fun setupRecyclerView() {
         with(recyclerViewCelebrations) {
             adapter = celebrationsAdapter
             layoutManager = LinearLayoutManager(this@CelebrationListActivity)

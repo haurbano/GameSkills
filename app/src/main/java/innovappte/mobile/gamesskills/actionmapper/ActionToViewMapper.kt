@@ -3,6 +3,7 @@ package innovappte.mobile.gamesskills.actionmapper
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import innovappte.mobile.domain.models.Action
 
 class ActionToViewMapper {
@@ -25,8 +26,12 @@ class ActionToViewMapper {
 
     private fun createViews(context: Context, imagesResources: List<Int>): List<View> {
         val views = arrayListOf<View>()
+        val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 100)
         imagesResources.forEach { image ->
-            val imageView = ImageView(context).apply { setImageResource(image) }
+            val imageView = ImageView(context).apply {
+                setImageResource(image)
+                setLayoutParams(layoutParams)
+            }
             views.add(imageView)
         }
         return views
