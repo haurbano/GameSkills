@@ -10,9 +10,9 @@ import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
 class FifaSkillAdapter(
         var items: List<GameSkill>,
         val context: Context,
-        val clickListener: (GameSkill) -> Unit,
-        val actionToViewMapper: ActionToViewMapper,
-        val videoPathUtils: VideoPathUtils
+        private val clickListener: (GameSkill) -> Unit,
+        private val actionToViewMapper: ActionToViewMapper,
+        private val videoPathUtils: VideoPathUtils
 ): RecyclerView.Adapter<BaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {

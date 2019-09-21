@@ -42,13 +42,18 @@ class SkillItemViewHolder(
         val skill = item as GameSkill
         val videoUri = Uri.fromFile(videoPathUtils.getVideoFile(skill, VideoType.Main))
         currentVideoUri = videoUri
-        nameTextView.text = skill.name.default
+        nameTextView.text = formatedName(skill)
         itemView.setOnClickListener { clickListener(skill) }
         skillStepsContainer.removeAllViews()
         val stepsViews = actionToViewMapper(context, skill.actions)
         stepsViews.forEach { skillStepsContainer.addView(it) }
         skillStepsContainer.invalidate()
         player.videoSurfaceView.setOnClickListener { clickListener(skill) }
+    }
+
+    private fun formatedName(skill: GameSkill): String {
+        val stars = "✭".repeat(skill.skillMoves)
+        return "$stars - ${skill.name.default}"
     }
 
     override fun isPlaying(): Boolean = helper?.isPlaying ?: false

@@ -29,10 +29,20 @@ class ButtonMapper {
             "lLeft"     to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_left),
             "lRight"    to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_right),
             "lRight"    to listOf(R.drawable.ic_button_ps4_r, R.drawable.ic_button_ps4_right),
+            "rLeftUp"   to listOf(R.drawable.ic_button_ps4_r, R.drawable.ic_button_ps4_left_up),
+            "rLeftDown" to listOf(R.drawable.ic_button_ps4_r, R.drawable.ic_button_ps4_left_down),
+            "rRightUp"  to listOf(R.drawable.ic_button_ps4_r, R.drawable.ic_button_ps4_right_up),
+            "rRightDown" to listOf(R.drawable.ic_button_ps4_r, R.drawable.ic_button_ps4_left_down),
+
+            "lLeftUp"   to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_left_up),
+            "lLeftDown" to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_left_down),
+            "lRightUp"  to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_right_up),
+            "lRightDown" to listOf(R.drawable.ic_button_ps4_l, R.drawable.ic_button_ps4_left_down),
 
             "hold"      to listOf(R.drawable.ic_action_ps4_hold_en),
             "next"      to listOf(R.drawable.ic_action_ps4_next),
             "press"     to listOf(),
-            "tap"       to listOf()
+            "tap"       to listOf(),
+            "plus"      to listOf(R.drawable.ic_action_plus)
     )
 }
