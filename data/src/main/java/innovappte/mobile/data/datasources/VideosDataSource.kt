@@ -1,40 +1,73 @@
 package innovappte.mobile.data.datasources
 
-import android.app.DownloadManager
 import android.content.Context
-import android.net.Uri
-import innovappte.mobile.common.L
+import android.graphics.Bitmap
+import android.media.ThumbnailUtils
+import android.provider.MediaStore
+import android.util.Log
 import innovappte.mobile.data.VideoPathUtils
+import innovappte.mobile.data.services.DownloadVideoServiceProvider
+import innovappte.mobile.data.services.RetrofitClientProvider
+import io.reactivex.Completable
+import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
+import java.io.FileOutputStream
+import java.io.IOException
 
 class VideosDataSource(
-        private val context: Context,
-        private val videoPathUtils: VideoPathUtils
+        private val videoPathUtils: VideoPathUtils,
+        private val downloadVideoServiceProvider: DownloadVideoServiceProvider
 ) {
 
-    fun downloadVideo(url: String, targetFileName: String) {
-        if (alreadyDownloaded(targetFileName)) return
+    fun downloadVideo(url: String, targetFileName: String): Completable {
+        val newUrl = url.removePrefix(RetrofitClientProvider.BASE_URL)
+        if (alreadyDownloaded(targetFileName)) return Completable.complete()
 
-        L.i("Downloading new video - $targetFileName")
-        val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager?
-        val request = buildRequest(url, targetFileName)
-        if (request != null) {
-            downloadManager?.enqueue(request)
-        }
+        val downloadVideoService = downloadVideoServiceProvider.get()
+        return downloadVideoService.download(newUrl)
+                .subscribeOn(Schedulers.io())
+                .flatMapCompletable { saveVideo(it, targetFileName) }
+                .subscribeOn(Schedulers.io())
+                .doOnComplete { buildPreview(targetFileName) }
     }
 
-    private fun buildRequest(url: String, videoName: String): DownloadManager.Request? {
-        val uri = Uri.parse(url)
-        val videoFile = videoPathUtils.getVideoFile(videoName)
-        val destinationUri = Uri.fromFile(videoFile)
-        return try {
-            DownloadManager.Request(uri).setDestinationUri(destinationUri)
-        } catch (e: IllegalArgumentException) {
-            null
+    private fun saveVideo(response: ResponseBody, targetFileName: String): Completable {
+        val input = response.byteStream()
+        return Completable.fromAction {
+            input.use { input ->
+                val videoFile = videoPathUtils.getVideoFile(targetFileName)
+                FileOutputStream(videoFile).use { output ->
+                    val buffer = ByteArray(4 * 1024)
+
+                    while (true) {
+                        val read = input.read(buffer)
+                        if (read == -1) {
+                            break
+                        }
+                        output.write(buffer, 0, read)
+                    }
+                    output.flush()
+                }
+            }
         }
     }
 
     private fun alreadyDownloaded(targetFileName: String): Boolean {
         val file = videoPathUtils.getVideoFile(targetFileName)
         return file?.exists() ?: false
+    }
+
+    private fun buildPreview(targetFileName: String?) {
+        if (targetFileName.isNullOrBlank()) return
+        val previewFile = videoPathUtils.getPreviewFile(targetFileName)
+        val videoFile = videoPathUtils.getVideoFile(targetFileName)
+        val preview = ThumbnailUtils.createVideoThumbnail(videoFile?.path, MediaStore.Images.Thumbnails.FULL_SCREEN_KIND)
+        try {
+            FileOutputStream(previewFile).use { out ->
+                preview.compress(Bitmap.CompressFormat.PNG, 85, out)
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 }

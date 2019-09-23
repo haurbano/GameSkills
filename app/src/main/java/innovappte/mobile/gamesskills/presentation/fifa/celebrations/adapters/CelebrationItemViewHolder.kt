@@ -20,7 +20,7 @@ import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
-import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.BaseViewHolder
+import innovappte.mobile.gamesskills.presentation.adapters.BaseViewHolder
 
 class CelebrationItemViewHolder(
         inflater: LayoutInflater,

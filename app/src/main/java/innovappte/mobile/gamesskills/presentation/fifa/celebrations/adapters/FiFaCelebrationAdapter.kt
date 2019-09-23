@@ -1,14 +1,13 @@
 package innovappte.mobile.gamesskills.presentation.fifa.celebrations.adapters
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.FiFaCelebration
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
-import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.BaseViewHolder
+import innovappte.mobile.gamesskills.presentation.adapters.BaseViewHolder
 
 class FiFaCelebrationAdapter(
         var items: List<FiFaCelebration>,

@@ -15,7 +15,14 @@
         android:contentDescription="Game image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNameGameSkill" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameGameSkill" >
+
+        <ImageView
+            android:id="@+id/imgVideoPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic[5]" />
+    </com.google.android.exoplayer2.ui.SimpleExoPlayerView>
 
     <TextView
         android:id="@+id/textViewNameGameSkill"

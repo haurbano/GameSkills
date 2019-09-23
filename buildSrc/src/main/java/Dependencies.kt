@@ -6,6 +6,7 @@ import Versions.firebase_core_version
 import Versions.firebase_database
 import Versions.koin_version
 import Versions.kotlin_version
+import Versions.retrofit_version
 import Versions.videoPlayerToroVersion
 
 object Versions {
@@ -18,6 +19,7 @@ object Versions {
     const val fire_store_version        = "20.1.0"
     const val videoPlayerToroVersion    = "3.6.2.2903"
     const val firebase_auth_version     = "19.0.0"
+    const val retrofit_version          = "2.6.1"
 }
 
 object Dependencies {
@@ -33,9 +35,12 @@ object Dependencies {
     val firebaseCore        =    "com.google.firebase:firebase-core:$firebase_core_version"
     val firebaseDatabase    =    "com.google.firebase:firebase-database:$firebase_database"
     val fireStore           =    "com.google.firebase:firebase-firestore:$fire_store_version"
-    val videoPlayerToro     =       "im.ene.toro3:toro:$videoPlayerToroVersion"
+    val videoPlayerToro     =    "im.ene.toro3:toro:$videoPlayerToroVersion"
     val videoPlayerToroExoPlayer =  "im.ene.toro3:toro-ext-exoplayer:$videoPlayerToroVersion"
     val firebaseAuth        =   "com.google.firebase:firebase-auth:$firebase_auth_version"
+    val retrofit            =   "com.squareup.retrofit2:retrofit:$retrofit_version"
+    val retrofitGsonConverter   =   "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    val retrofitRxAdapter   =   "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 }
 
 object TestDependencies {

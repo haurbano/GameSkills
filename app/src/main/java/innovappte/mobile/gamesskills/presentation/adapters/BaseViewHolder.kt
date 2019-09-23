@@ -1,4 +1,4 @@
-package innovappte.mobile.gamesskills.presentation.fifa.skills.adapters
+package innovappte.mobile.gamesskills.presentation.adapters
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

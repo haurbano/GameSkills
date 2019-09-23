@@ -5,10 +5,12 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.exoplayer2.ui.PlayerView
 import im.ene.toro.ToroPlayer
+import im.ene.toro.ToroPlayer.EventListener
 import im.ene.toro.ToroUtil.visibleAreaOffset
 import im.ene.toro.exoplayer.Config
 import im.ene.toro.exoplayer.ExoPlayerViewHelper
@@ -20,6 +22,9 @@ import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
+import innovappte.mobile.gamesskills.presentation.adapters.BaseViewHolder
+import innovappte.mobile.gamesskills.presentation.models.GameSkillViewInfo
+
 
 class SkillItemViewHolder(
         inflater: LayoutInflater,
@@ -37,10 +42,13 @@ class SkillItemViewHolder(
 
     private val nameTextView: TextView = itemView.findViewById(R.id.textViewNameGameSkill)
     private val skillStepsContainer = itemView.findViewById<LinearLayout>(R.id.skillStepsContainer)
+    private val videoPreview = itemView.findViewById<ImageView>(R.id.imgVideoPreview)
 
     override fun bind(item: Any?) {
-        val skill = item as GameSkill
+        val skill = (item as GameSkillViewInfo).gameSkill
         val videoUri = Uri.fromFile(videoPathUtils.getVideoFile(skill, VideoType.Main))
+        val videoPreviewUri = videoPathUtils.getVideoPreviewUri(skill)
+        videoPreview.setImageURI(videoPreviewUri)
         currentVideoUri = videoUri
         nameTextView.text = formatedName(skill)
         itemView.setOnClickListener { clickListener(skill) }
@@ -64,7 +72,7 @@ class SkillItemViewHolder(
         helper?.pause()
     }
 
-    override fun wantsToPlay(): Boolean = visibleAreaOffset(this, itemView.parent) >= 0.65
+    override fun wantsToPlay(): Boolean = visibleAreaOffset(this, itemView.parent) >= 0.95
 
     override fun play() {
         helper!!.play()
@@ -83,9 +91,34 @@ class SkillItemViewHolder(
                     .setMediaSourceBuilder(MediaSourceBuilder.LOOPING)
                     .build()
             helper = ExoPlayerViewHelper(this, currentVideoUri!!, null, config)
+            helper!!.addPlayerEventListener(listener)
         }
         helper!!.initialize(container, playbackInfo)
     }
 
     override fun getPlayerOrder(): Int = adapterPosition
+
+    private val listener by lazy {
+        object: EventListener {
+            override fun onBuffering() {
+            }
+
+            override fun onFirstFrameRendered() {
+                videoPreview.visibility = View.INVISIBLE
+            }
+
+            override fun onPlaying() {
+                videoPreview.visibility = View.INVISIBLE
+            }
+
+            override fun onPaused() {
+                videoPreview.visibility = View.VISIBLE
+            }
+
+            override fun onCompleted() {
+                videoPreview.visibility = View.VISIBLE
+            }
+
+        }
+    }
 }

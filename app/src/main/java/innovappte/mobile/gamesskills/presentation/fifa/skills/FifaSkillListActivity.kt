@@ -3,6 +3,7 @@ package innovappte.mobile.gamesskills.presentation.fifa.skills
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -23,7 +24,7 @@ class FifaSkillListActivity : AppCompatActivity() {
     private val viewModel: FifaSkillsListVM by viewModel()
     private val onItemListListener = { skill: GameSkill -> goToDetails(skill) }
     private val gameSkillsAdapter = FifaSkillAdapter(
-            emptyList(),
+            ArrayList(1),
             this,
             onItemListListener,
             ActionToViewMapper(),
@@ -66,20 +67,16 @@ class FifaSkillListActivity : AppCompatActivity() {
 
     private fun setUpGameSkills() {
         viewModel.gameSkills.observe(this, Observer { gameSkills ->
-            if (gameSkills != null) gameSkillsAdapter.items = gameSkills
+            if (gameSkills != null) gameSkillsAdapter.updateItems(gameSkills)
             gameSkillsAdapter.notifyDataSetChanged()
+        })
+
+        viewModel.endListLoader.observe(this, Observer { visibility ->
+            if(visibility == View.GONE) gameSkillsAdapter.removeEndListLoader()
         })
     }
 
     private fun listenLoaderStatus() {
-
-    }
-
-    private fun hideLoader() {
-
-    }
-
-    private fun showLoader() {
 
     }
 

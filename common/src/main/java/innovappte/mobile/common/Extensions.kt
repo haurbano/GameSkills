@@ -11,6 +11,6 @@ object L {
     }
 
     fun e(error: Throwable) {
-        Log.e(TAG_E, error.message)
+        Log.e(TAG_E, error.message ?: "Message error null")
     }
 }

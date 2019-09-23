@@ -9,4 +9,5 @@
     <color name="unselected_option">#33ffffff</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="general_txt_color">#333333</color>
+    <color name="bg_splash_color">#337979</color>
 </resources>

@@ -39,6 +39,9 @@ dependencies {
     implementation Dependencies.koin
     implementation Dependencies.rxJava
     implementation Dependencies.fireStore
+    implementation Dependencies.retrofit
+    implementation Dependencies.retrofitRxAdapter
+    implementation Dependencies.retrofitGsonConverter
 
     testImplementation TestDependencies.junit
 

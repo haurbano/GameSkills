@@ -1,14 +1,13 @@
 package innovappte.mobile.data
 
 import android.content.Context
+import android.net.Uri
+import android.util.Log
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.domain.models.VideosContainer
 import java.io.File
 
 class VideoPathUtils(private val context: Context) {
-    companion object {
-        private const val VIDEOS_FOLDER_NAME = "GameSkillsVideos"
-    }
 
     fun getVideoFile(videoContainer: VideosContainer, videoType: VideoType): File? {
         return when (videoType) {
@@ -21,7 +20,19 @@ class VideoPathUtils(private val context: Context) {
     }
 
     fun getVideoFile(videoTargetFileName: String): File? {
-        val folder = context.getExternalFilesDir(VIDEOS_FOLDER_NAME)
+        val folder = context.filesDir
         return File(folder, videoTargetFileName)
     }
+
+    fun getVideoPreviewUri(videoContainer: VideosContainer): Uri {
+        val previewFile = getPreviewFile(videoContainer.getMainVideo().getTargetFileName())
+        return Uri.fromFile(previewFile).also { Log.i("--haur", "VideoPreview: ${it.path}") }
+    }
+
+    fun getPreviewFile(videoTargetFileName: String): File? {
+        val folder = context.filesDir
+        return File(folder, "${videoTargetFileName}_preview")
+    }
+
+
 }
