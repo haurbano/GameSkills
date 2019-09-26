@@ -1,10 +1,8 @@
 package innovappte.mobile.data.datasources
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
 import android.provider.MediaStore
-import android.util.Log
 import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.data.services.DownloadVideoServiceProvider
 import innovappte.mobile.data.services.RetrofitClientProvider

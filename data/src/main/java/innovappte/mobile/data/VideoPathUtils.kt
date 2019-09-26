@@ -26,7 +26,7 @@ class VideoPathUtils(private val context: Context) {
 
     fun getVideoPreviewUri(videoContainer: VideosContainer): Uri {
         val previewFile = getPreviewFile(videoContainer.getMainVideo().getTargetFileName())
-        return Uri.fromFile(previewFile).also { Log.i("--haur", "VideoPreview: ${it.path}") }
+        return Uri.fromFile(previewFile)
     }
 
     fun getPreviewFile(videoTargetFileName: String): File? {

@@ -43,7 +43,7 @@ class FifaSkillAdapter(
     }
 
     fun removeEndListLoader() {
-        items.remove(endListLoaderView)
+        items.removeAt(itemCount - 1)
         notifyDataSetChanged()
     }
 

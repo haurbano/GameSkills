@@ -8,18 +8,18 @@ import innovappte.mobile.gamesskills.R
 class LoadingDelegateAdapter: ViewTypeDelegateAdapter {
     override fun onCreateViewHolder(parent: ViewGroup): BaseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return LoadingViewHolder(inflater)
+        return LoadingViewHolder(inflater, parent)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, item: ViewType) {
-        // Do nothing
+        // Do nothing...
     }
 
-    class LoadingViewHolder(inflater: LayoutInflater): BaseViewHolder(
-            inflater.inflate(R.layout.item_loading, null)
+    class LoadingViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder(
+            inflater.inflate(R.layout.item_loading, parent, false)
     ) {
         override fun bind(item: Any?) {
-
+            // Do nothing..
         }
     }
 }

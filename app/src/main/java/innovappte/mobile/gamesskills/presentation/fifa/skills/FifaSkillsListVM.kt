@@ -1,5 +1,6 @@
 package innovappte.mobile.gamesskills.presentation.fifa.skills
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -29,6 +30,7 @@ class FifaSkillsListVM(private val gameSkillsUseCase: FifaGameSkillsUseCase) : V
                 .flatMapObservable { skills -> gameSkillsUseCase.downloadMainSkillVideos(skills) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnComplete { Log.i("--haur", "on Complete download videos") }
                 .subscribe({ partialSkills->
                     temporal.addAll(partialSkills.map { GameSkillViewInfo(it) })
                     gameSkills.value = temporal
