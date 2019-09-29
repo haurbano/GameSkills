@@ -1,17 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="actionBarStyle">@style/CustomActionBar</item>
     </style>
 
     <style name="AppTheme.Splash" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+    <style name="CustomActionBar" parent="">
+        <item name="android:colorPrimary">@color/general_txt_color</item>
     </style>
     
     <style name="TextViewFifaHomeMainButton">
@@ -23,7 +28,7 @@
 
     <style name="TextViewFifaHomeModeSelected">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/general_txt_color</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
     </style>

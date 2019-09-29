@@ -2,15 +2,10 @@
 
 <!-- The android:opacity=”opaque” line — this is critical in preventing a flash of black as your theme transitions. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
-    <item android:drawable="@color/bgFiFaSkills" />
+    <item android:drawable="@color/white" />
     <item>
-        <bitmap android:src="@drawable/bg_splash_top"
+        <bitmap android:src="@drawable/bg_home_activity"
             android:gravity="top|left"
-            />
-    </item>
-    <item>
-        <bitmap android:src="@drawable/bg_splash_bottom"
-            android:gravity="bottom|right"
             />
     </item>
 

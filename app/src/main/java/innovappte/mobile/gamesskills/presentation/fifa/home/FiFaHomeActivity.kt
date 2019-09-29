@@ -30,7 +30,7 @@ class FiFaHomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_fifa_home)
         setListeners()
         setVMListeners()
@@ -114,7 +114,7 @@ class FiFaHomeActivity : AppCompatActivity() {
 
     private fun setPs4AsConsoleType() {
         imgBtnPs4.setImageResource(R.drawable.btn_ps4_on)
-        imgbtnXbox.setImageResource(R.drawable.btn_xbox_off)
+        imgbtnXbox.setImageResource(R.drawable.btn_xbox_on) // TODO: change this to btn_xbox_off
     }
 
     private fun setXboxAsConsoleType() {

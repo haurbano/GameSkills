@@ -8,127 +8,6 @@
     android:paddingTop="64dp"
     tools:context=".presentation.fifa.home.FiFaHomeActivity">
 
-    <ImageView
-        android:id="@+id/imgBgPlays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_btn_plays_option" />
-
-    <ImageView
-        android:id="@+id/imgBgCelebrations"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25"
-        app:srcCompat="@drawable/bg_btn_celebration_option" />
-
-    <ImageView
-        android:id="@+id/imgBgPlayers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64"
-        app:srcCompat="@drawable/bg_btn_players_option" />
-
-    <ImageView
-        android:id="@+id/imgBgAdvise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBgCelebrations"
-        app:srcCompat="@drawable/bg_btn_adviser_option"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="171dp" />
-
-    <TextView
-        android:id="@+id/textViewPlays"
-        style="@style/TextViewFifaHomeMainButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/btn_title_plays"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBgPlays"
-        app:layout_constraintStart_toStartOf="@+id/imgBgPlays" />
-
-    <TextView
-        android:id="@+id/textViewCelebrations"
-        style="@style/TextViewFifaHomeMainButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/btn_title_celebrations"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBgCelebrations"
-        app:layout_constraintEnd_toEndOf="@+id/imgBgCelebrations"
-        app:layout_constraintStart_toStartOf="@+id/imgBgCelebrations" />
-
-    <TextView
-        android:id="@+id/textViewPlayers"
-        style="@style/TextViewFifaHomeMainButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_title_players"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBgPlayers"
-        app:layout_constraintEnd_toEndOf="@+id/imgBgPlayers"
-        app:layout_constraintTop_toTopOf="@+id/imgBgPlayers" />
-
-    <TextView
-        android:id="@+id/textViewAdvise"
-        style="@style/TextViewFifaHomeMainButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_title_advises"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBgAdvise"
-        app:layout_constraintStart_toStartOf="@+id/imgBgAdvise"
-        app:layout_constraintTop_toTopOf="@+id/imgBgAdvise" />
-
-    <TextView
-        android:id="@+id/textViewControl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/title_control"
-        android:textAllCaps="true"
-        android:textColor="@color/subOptionFiFaHome"
-        app:layout_constraintBottom_toTopOf="@+id/imgBtnPs4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineBottom" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_mode"
-        android:textAllCaps="true"
-        android:textColor="@color/subOptionFiFaHome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/textViewControl" />
-
     <ImageButton
         android:id="@+id/imgBtnPs4"
         android:layout_width="wrap_content"
@@ -150,17 +29,132 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toEndOf="@+id/imgBtnPs4"
-        app:srcCompat="@drawable/btn_xbox_off" />
+        app:srcCompat="@drawable/btn_xbox_on" />
+
+    <ImageView
+        android:id="@+id/imgBgPlays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/imgBgCelebrations"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_fifa_home_option" />
+
+    <ImageView
+        android:id="@+id/imgBgCelebrations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/imgBgPlayers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBgPlays"
+        app:layout_constraintVertical_bias="0.25"
+        app:srcCompat="@drawable/bg_fifa_home_option" />
+
+    <ImageView
+        android:id="@+id/imgBgPlayers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/imgBgAdvise"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBgCelebrations"
+        app:srcCompat="@drawable/bg_fifa_home_option" />
+
+    <ImageView
+        android:id="@+id/imgBgAdvise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBgPlayers"
+        app:srcCompat="@drawable/bg_fifa_home_option" />
+
+    <TextView
+        android:id="@+id/textViewPlays"
+        style="@style/TextViewFifaHomeMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/btn_title_plays"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBgPlays"
+        app:layout_constraintEnd_toEndOf="@+id/imgBgPlays"
+        app:layout_constraintStart_toStartOf="@+id/imgBgPlays" />
+
+    <TextView
+        android:id="@+id/textViewCelebrations"
+        style="@style/TextViewFifaHomeMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_title_celebrations"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBgCelebrations"
+        app:layout_constraintEnd_toEndOf="@+id/imgBgCelebrations"
+        app:layout_constraintStart_toStartOf="@+id/imgBgCelebrations"
+        app:layout_constraintTop_toTopOf="@+id/imgBgCelebrations" />
+
+    <TextView
+        android:id="@+id/textViewPlayers"
+        style="@style/TextViewFifaHomeMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_title_players"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBgPlayers"
+        app:layout_constraintEnd_toEndOf="@+id/imgBgPlayers"
+        app:layout_constraintStart_toStartOf="@+id/imgBgPlayers"
+        app:layout_constraintTop_toTopOf="@+id/imgBgPlayers" />
+
+    <TextView
+        android:id="@+id/textViewAdvise"
+        style="@style/TextViewFifaHomeMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_title_advises"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBgAdvise"
+        app:layout_constraintEnd_toEndOf="@+id/imgBgAdvise"
+        app:layout_constraintStart_toStartOf="@+id/imgBgAdvise"
+        app:layout_constraintTop_toTopOf="@+id/imgBgAdvise" />
+
+    <TextView
+        android:id="@+id/textViewControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/title_control"
+        android:textAllCaps="true"
+        android:textColor="@color/general_txt_color"
+        app:layout_constraintBottom_toTopOf="@+id/imgBtnPs4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottom" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_mode"
+        android:textAllCaps="true"
+        android:textColor="@color/general_txt_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textViewControl" />
 
     <TextView
         android:id="@+id/textViewModeClasic"
         style="@style/TextViewFifaHomeModeSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="24dp"
         android:text="@string/title_clasic_mode"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewModeAlternative"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -170,10 +164,10 @@
         style="@style/TextViewFifaHomeModeUnselected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
         android:text="@string/title_alternative_mode"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline" />
@@ -191,7 +185,14 @@
         android:layout_height="80dp"
         android:background="@color/subOptionFiFaHome"
         app:layout_constraintBottom_toBottomOf="@+id/imgbtnXbox"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/imgbtnXbox" />
+        app:layout_constraintTop_toTopOf="@+id/imgbtnXbox"
+        tools:layout_editor_absoluteX="258dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="171dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

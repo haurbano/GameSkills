@@ -1,11 +1,8 @@
 package innovappte.mobile.gamesskills.domain.usecases.impl
 
 import innovappte.mobile.domain.models.GameSkill
-import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import innovappte.mobile.gamesskills.domain.usecases.interfaces.FifaGameSkillsUseCase
-import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
