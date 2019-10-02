@@ -3,9 +3,12 @@ package innovappte.mobile.gamesskills.presentation.fifa.skills
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import im.ene.toro.CacheManager
@@ -45,11 +48,22 @@ class FifaSkillListActivity : AppCompatActivity() {
         setListeners()
         setUpRecyclerView()
         setUpGameSkills()
-        listenLoaderStatus()
     }
 
     private fun setListeners() {
         imgBackSkillLsit.setOnClickListener { finish() }
+        editSearchSkill.addTextChangedListener(queryTextListener)
+    }
+
+    private val queryTextListener = object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {}
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun onTextChanged(query: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            viewModel.searchBy(query?.toString())
+        }
+
     }
 
     override fun onResume() {
@@ -74,10 +88,6 @@ class FifaSkillListActivity : AppCompatActivity() {
         viewModel.endListLoader.observe(this, Observer { visibility ->
             if(visibility == View.GONE) gameSkillsAdapter.removeEndListLoader()
         })
-    }
-
-    private fun listenLoaderStatus() {
-
     }
 
     private fun goToDetails(skill: GameSkill) {

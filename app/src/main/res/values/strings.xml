@@ -1,15 +1,17 @@
 <resources>
     <string name="app_name">GamesSkills</string>
-    <string name="btn_title_plays">Jugadas</string>
-    <string name="btn_title_celebrations">Celebraciones</string>
-    <string name="btn_title_players">Jugadores</string>
-    <string name="btn_title_advises">Concejos</string>
+    <string name="btn_title_plays">Plays</string>
+    <string name="btn_title_celebrations">Celebrations</string>
+    <string name="btn_title_players">Players</string>
+    <string name="btn_title_advises">Advises</string>
     <string name="title_control">Control</string>
-    <string name="title_mode">Modo</string>
-    <string name="title_clasic_mode">Clasico</string>
-    <string name="title_alternative_mode">Alternativo</string>
+    <string name="title_mode">Mode</string>
+    <string name="title_clasic_mode">Classic</string>
+    <string name="title_alternative_mode">Alternative</string>
 
-    <string name="title_fifa_dialog_default">EN CAMINO!</string>
-    <string name="msg_fifa_dialog_default">Pronto tedras las mejores celebraciones</string>
+    <string name="title_fifa_dialog_default">Soon!</string>
+    <string name="msg_fifa_dialog_default">Soon you will have this new feature</string>
     <string name="btn_title_fifa_dialog_default_message">Volver</string>
+
+    <string name="msg_search">Search</string>
 </resources>

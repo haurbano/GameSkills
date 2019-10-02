@@ -45,12 +45,19 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="CustomSearchView" parent="Widget.AppCompat.Light.SearchView">
-        <item name="android:background">@color/colorPrimary</item>
-    </style>
-
     <style name="GeneralProgressBar" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/general_txt_color</item>
+    </style>
+
+    <style name="SearchCustomView" parent="Widget.AppCompat.EditText">
+        <item name="android:drawableLeft">@drawable/ic_search</item>
+        <item name="android:hint">@string/msg_search</item>
+        <item name="android:background">@drawable/bg_search_bar</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textCursorDrawable">@color/white</item>
+        <item name="android:textColorHint">@color/color_hint_search_view</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
 </resources>
