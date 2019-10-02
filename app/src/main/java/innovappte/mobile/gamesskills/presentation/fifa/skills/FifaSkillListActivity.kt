@@ -8,11 +8,11 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import im.ene.toro.CacheManager
 import im.ene.toro.widget.Container
+import innovappte.mobile.common.TaskResult
 import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
@@ -85,8 +85,10 @@ class FifaSkillListActivity : AppCompatActivity() {
             gameSkillsAdapter.notifyDataSetChanged()
         })
 
-        viewModel.endListLoader.observe(this, Observer { visibility ->
-            if(visibility == View.GONE) gameSkillsAdapter.removeEndListLoader()
+        viewModel.endListLoader.observe(this, Observer { result ->
+            if (result is TaskResult.Success<*>) {
+                gameSkillsAdapter.removeEndListLoader()
+            }
         })
     }
 

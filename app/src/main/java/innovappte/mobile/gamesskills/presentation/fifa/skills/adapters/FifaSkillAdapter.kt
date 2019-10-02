@@ -30,16 +30,9 @@ class FifaSkillAdapter(
         )
     }
 
-    private val endListLoaderView = object : ViewType {
-        override fun getViewType(): Int {
-            return ViewTypeValues.LOADER
-        }
-    }
-
     fun updateItems(data: List<ViewType>) {
         items.clear()
         items.addAll(data)
-        items.add(endListLoaderView)
     }
 
     fun removeEndListLoader() {

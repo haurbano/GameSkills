@@ -1,5 +1,6 @@
 package innovappte.mobile.data.repositories
 
+import android.util.Log
 import innovappte.mobile.data.datasources.ActionsDataSource
 import innovappte.mobile.data.datasources.FiFaFirebaseCollections.SKILLS
 import innovappte.mobile.data.datasources.FiFaGameSkillsFirebaseDataSource
@@ -9,7 +10,6 @@ import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.domain.models.VideoType
 import innovappte.mobile.gamesskills.domain.repositories.GameSkillsRepository
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -21,7 +21,7 @@ class GameSkillRepositoryImpl(
 ) : GameSkillsRepository {
 
     companion object {
-        const val PATCH_VIDEOS_SIZE = 5
+        const val BATCH_VIDEOS_SIZE = 5
     }
 
     override fun getFifaGameSkills(): Single<List<GameSkill>> {
@@ -58,6 +58,6 @@ class GameSkillRepositoryImpl(
             observableList.add(videoDownloadObservable)
         }
         return Observable.concat(observableList)
-                .buffer(PATCH_VIDEOS_SIZE)
+                .buffer(BATCH_VIDEOS_SIZE)
     }
 }
