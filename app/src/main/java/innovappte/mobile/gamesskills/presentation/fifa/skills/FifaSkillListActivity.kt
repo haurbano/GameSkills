@@ -5,20 +5,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.view.WindowManager
+import android.widget.RatingBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import im.ene.toro.CacheManager
 import im.ene.toro.widget.Container
 import innovappte.mobile.common.TaskResult
+import innovappte.mobile.common.onNewItemOnTop
 import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity
 import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.FifaSkillAdapter
+import innovappte.mobile.gamesskills.presentation.models.GameSkillViewInfo
 import kotlinx.android.synthetic.main.activity_fifa_skill_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -53,6 +55,13 @@ class FifaSkillListActivity : AppCompatActivity() {
     private fun setListeners() {
         imgBackSkillLsit.setOnClickListener { finish() }
         editSearchSkill.addTextChangedListener(queryTextListener)
+        ratingBarSkills.onRatingBarChangeListener = onStarsChange
+    }
+
+    private val onStarsChange = RatingBar.OnRatingBarChangeListener { _, stars, changeByUser ->
+        if (changeByUser){
+            moveListToSkillsWithStart(stars)
+        }
     }
 
     private val queryTextListener = object : TextWatcher {
@@ -63,7 +72,6 @@ class FifaSkillListActivity : AppCompatActivity() {
         override fun onTextChanged(query: CharSequence?, p1: Int, p2: Int, p3: Int) {
             viewModel.searchBy(query?.toString())
         }
-
     }
 
     override fun onResume() {
@@ -76,6 +84,7 @@ class FifaSkillListActivity : AppCompatActivity() {
             adapter = gameSkillsAdapter
             layoutManager = LinearLayoutManager(this@FifaSkillListActivity)
             cacheManager = CacheManager.DEFAULT
+            onNewItemOnTop(this@FifaSkillListActivity::calculateStarsOnRatingBar)
         }
     }
 
@@ -95,5 +104,17 @@ class FifaSkillListActivity : AppCompatActivity() {
     private fun goToDetails(skill: GameSkill) {
         val intent = SkillDetailsActivity.getIntent(this, skill)
         startActivity(intent)
+    }
+
+    private fun moveListToSkillsWithStart(stars: Float) {
+
+    }
+
+    private fun calculateStarsOnRatingBar(itemPosition: Int) {
+        val skill = gameSkillsAdapter.items[itemPosition]
+        if (skill is GameSkillViewInfo) {
+            val stars = skill.gameSkill.skillMoves
+            ratingBarSkills.rating = stars.toFloat()
+        }
     }
 }

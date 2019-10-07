@@ -30,6 +30,7 @@ dependencies {
 
     implementation Dependencies.kotlin
     implementation Dependencies.appCompat
+    implementation Dependencies.recyclerView
 
     testImplementation TestDependencies.junit
 

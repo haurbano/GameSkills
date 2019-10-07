@@ -60,4 +60,8 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="RatingBarCustom" parent="Widget.AppCompat.RatingBar">
+        <item name="android:colorPrimary"></item>
+    </style>
+
 </resources>

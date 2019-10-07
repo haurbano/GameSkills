@@ -1,16 +1,17 @@
 package innovappte.mobile.common
 
-import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-object L {
-    private const val TAG_I = "Info: "
-    private const val TAG_E = "Error: "
-
-    fun i(message: String) {
-        Log.i(TAG_I, message)
-    }
-
-    fun e(error: Throwable) {
-        Log.e(TAG_E, error.message ?: "Message error null")
-    }
+fun RecyclerView.onNewItemOnTop(listener: (Int) -> Unit) {
+    this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val lm = recyclerView.layoutManager
+            if (lm is LinearLayoutManager) {
+                val itemPosition = lm.findFirstVisibleItemPosition()
+                listener(itemPosition)
+            }
+        }
+    })
 }
