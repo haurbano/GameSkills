@@ -10,6 +10,7 @@ import android.widget.RatingBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import im.ene.toro.CacheManager
 import im.ene.toro.widget.Container
 import innovappte.mobile.common.TaskResult
@@ -18,6 +19,7 @@ import innovappte.mobile.data.VideoPathUtils
 import innovappte.mobile.domain.models.GameSkill
 import innovappte.mobile.gamesskills.R
 import innovappte.mobile.gamesskills.actionmapper.ActionToViewMapper
+import innovappte.mobile.gamesskills.presentation.adapters.ViewTypeValues
 import innovappte.mobile.gamesskills.presentation.fifa.skilldetail.SkillDetailsActivity
 import innovappte.mobile.gamesskills.presentation.fifa.skills.adapters.FifaSkillAdapter
 import innovappte.mobile.gamesskills.presentation.models.GameSkillViewInfo
@@ -107,7 +109,15 @@ class FifaSkillListActivity : AppCompatActivity() {
     }
 
     private fun moveListToSkillsWithStart(stars: Float) {
-
+        val item = gameSkillsAdapter.items.firstOrNull {
+            it.getViewType() == ViewTypeValues.GAME_SKILL &&
+                    (it as GameSkillViewInfo).gameSkill.skillMoves == stars.toInt()
+        }
+        item?.let {
+            val position = gameSkillsAdapter.items.indexOf(it)
+            (recyclerViewSkills.layoutManager as? LinearLayoutManager)?.
+                    scrollToPositionWithOffset(position, 0)
+        }
     }
 
     private fun calculateStarsOnRatingBar(itemPosition: Int) {
